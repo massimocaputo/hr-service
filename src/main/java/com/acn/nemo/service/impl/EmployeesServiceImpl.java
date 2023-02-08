@@ -1,0 +1,73 @@
+package com.acn.nemo.service.impl;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.acn.nemo.dto.EmployeesDto;
+import com.acn.nemo.mapper.EmployeesMapper;
+import com.acn.nemo.model.Employee;
+import com.acn.nemo.repository.EmployeesRepository;
+import com.acn.nemo.service.EmployeesService;
+
+
+/**
+ * The Class EmployeesServiceImpl.
+ */
+@Service
+@Transactional
+public class EmployeesServiceImpl  implements EmployeesService{
+
+	
+	/** The employees repository. */
+	@Autowired
+    private EmployeesRepository employeesRepository;
+
+	/** The employee mapper. */
+	@Autowired
+	private EmployeesMapper employeeMapper;
+
+	/**
+	 * Gets the by id.
+	 *
+	 * @param id the id
+	 * @return the by id
+	 */
+	@Override
+	public EmployeesDto getById(Integer id) {
+		return employeeMapper.modelToDto(
+				employeesRepository.findById(Long.valueOf(id)).get()
+				);
+	}
+
+	/**
+	 * Gets the all employees.
+	 *
+	 * @return the all employees
+	 */
+	@Override
+	public List<EmployeesDto> getAllEmployees() {
+		return employeeMapper.modelToDtos(employeesRepository.findAll());
+	}
+
+	@Override
+	
+	public EmployeesDto createEmployee(EmployeesDto dto) {
+		if( ObjectUtils.isNotEmpty(dto) ) {
+			Employee emp = employeesRepository.findById(Long.valueOf(dto.getEmployeeId())).get().;
+			if( !ObjectUtils.isEmpty(emp)) {
+				return employeeMapper.modelToDto(
+						employeesRepository.save(employeeMapper.dtoToModel(dto))
+						);
+			}
+		}
+		return null;
+	}
+	
+	
+	  
+}

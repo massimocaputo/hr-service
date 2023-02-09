@@ -3,9 +3,14 @@ package com.acn.nemo.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +26,9 @@ import java.util.List;
  * Instantiates a new employee.
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonFormat
 @NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
 public class Employee implements Serializable {
 	
@@ -76,8 +84,8 @@ public class Employee implements Serializable {
 
 	/** The departments. */
 	//bi-directional many-to-one association to Department
-	@OneToMany(mappedBy="employee")
-	private List<Department> departments;
+	@OneToMany(mappedBy="employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Department> departments = new ArrayList<>();
 
 	/** The job histories. */
 	//bi-directional many-to-one association to JobHistory

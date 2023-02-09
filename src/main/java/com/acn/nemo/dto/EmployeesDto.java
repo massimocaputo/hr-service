@@ -6,6 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.Email;
@@ -43,7 +44,7 @@ public class EmployeesDto implements Serializable {
 
 	private BigDecimal salary;
 
-	//private List<Department> departments;
+	private List<Department> departments;
 
 	//private List<JobHistory> jobHistorieList;
 

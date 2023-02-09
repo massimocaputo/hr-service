@@ -3,7 +3,9 @@ package com.acn.nemo.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -19,6 +21,8 @@ import java.util.List;
  * Instantiates a new department.
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @NamedQuery(name="Department.findAll", query="SELECT d FROM Department d")
 public class Department implements Serializable {
 	

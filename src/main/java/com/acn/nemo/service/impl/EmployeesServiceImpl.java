@@ -1,13 +1,13 @@
 package com.acn.nemo.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.acn.nemo.dto.EmployeesDto;
 import com.acn.nemo.mapper.EmployeesMapper;
 import com.acn.nemo.model.Employee;
@@ -58,8 +58,11 @@ public class EmployeesServiceImpl  implements EmployeesService{
 	
 	public EmployeesDto createEmployee(EmployeesDto dto) {
 		if( ObjectUtils.isNotEmpty(dto) ) {
-			Employee emp = employeesRepository.findById(Long.valueOf(dto.getEmployeeId())).get();
-			if( !ObjectUtils.isEmpty(emp)) {
+			
+			Optional<Employee> valueEmp = employeesRepository.findById(
+									Long.valueOf(dto.getEmployeeId())
+									);
+			if( valueEmp.isPresent() && !valueEmp.isEmpty()) {
 				return employeeMapper.modelToDto(
 						employeesRepository.save(employeeMapper.dtoToModel(dto))
 						);

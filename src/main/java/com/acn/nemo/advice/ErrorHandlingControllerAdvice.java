@@ -48,12 +48,5 @@ class ErrorHandlingControllerAdvice {
 //		
 //	}
 	
-	@ExceptionHandler(InvalidValuesException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	@ResponseBody
-	ValidationErrorResponse handleNoSuchElementException(InvalidValuesException e){
-		ValidationErrorResponse error = new ValidationErrorResponse();
-		return new ResponseEntity<String>("Input field not present", HttpStatus.NOT_FOUND);
-		
-	}
+
 }

@@ -58,7 +58,7 @@ public class EmployeesServiceImpl  implements EmployeesService{
 	
 	public EmployeesDto createEmployee(EmployeesDto dto) {
 		if( ObjectUtils.isNotEmpty(dto) ) {
-			Employee emp = employeesRepository.findById(Long.valueOf(dto.getEmployeeId())).get().;
+			Employee emp = employeesRepository.findById(Long.valueOf(dto.getEmployeeId())).get();
 			if( !ObjectUtils.isEmpty(emp)) {
 				return employeeMapper.modelToDto(
 						employeesRepository.save(employeeMapper.dtoToModel(dto))

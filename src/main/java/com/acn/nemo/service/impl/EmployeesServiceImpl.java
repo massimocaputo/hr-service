@@ -39,9 +39,15 @@ public class EmployeesServiceImpl  implements EmployeesService{
 	 */
 	@Override
 	public EmployeesDto getById(Integer id) {
-		return employeeMapper.modelToDto(
-				employeesRepository.findById(Long.valueOf(id)).get()
-				);
+		if(ObjectUtils.isNotEmpty(id)) {
+			Optional<Employee> valueEmp = employeesRepository.findById(Long.valueOf(id));
+			if(valueEmp.isPresent()) {
+				return employeeMapper.modelToDto(valueEmp.get());
+			}else {
+				return null;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -62,11 +68,9 @@ public class EmployeesServiceImpl  implements EmployeesService{
 			Optional<Employee> valueEmp = employeesRepository.findById(
 									Long.valueOf(dto.getEmployeeId())
 									);
-			if( valueEmp.isPresent() && !valueEmp.isEmpty()) {
-				return employeeMapper.modelToDto(
-						employeesRepository.save(employeeMapper.dtoToModel(dto))
-						);
-			}
+			if( valueEmp.isPresent() ) return employeeMapper.modelToDto(
+					employeesRepository.save(employeeMapper.dtoToModel(dto))
+			);
 		}
 		return null;
 	}

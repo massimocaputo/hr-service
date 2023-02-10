@@ -1,7 +1,9 @@
 package com.acn.nemo.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,6 +17,8 @@ import javax.validation.constraints.Size;
 import com.acn.nemo.model.Department;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeesDto implements Serializable {
     private static final long serialVersionUID = 1L;
    
@@ -44,7 +48,7 @@ public class EmployeesDto implements Serializable {
 
 	private BigDecimal salary;
 
-	private List<Department> departments;
+	private List<Department> departments = new ArrayList<>();
 
 	//private List<JobHistory> jobHistorieList;
 

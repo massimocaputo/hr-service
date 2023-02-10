@@ -2,8 +2,6 @@ package com.acn.nemo.advice;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

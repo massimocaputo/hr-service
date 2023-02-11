@@ -1,15 +1,12 @@
 package com.acn.nemo.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,13 +82,15 @@ public class Employee implements Serializable {
 
 	/** The departments. */
 	//bi-directional many-to-one association to Department
+	@Builder.Default
 	@OneToMany(mappedBy="employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Department> departments = new ArrayList<>();
 
 	/** The job histories. */
 	//bi-directional many-to-one association to JobHistory
-	@OneToMany(mappedBy="employee")
-	private List<JobHistory> jobHistories;
+	@Builder.Default
+	@OneToMany(mappedBy="employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<JobHistory> jobHistories = new ArrayList<>();
 
 	
 

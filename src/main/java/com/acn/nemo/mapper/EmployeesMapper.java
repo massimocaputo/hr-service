@@ -2,11 +2,10 @@ package com.acn.nemo.mapper;
 
 import com.acn.nemo.dto.EmployeesDto;
 import com.acn.nemo.model.Employee;
-
-import java.util.List;
-
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 
 /**

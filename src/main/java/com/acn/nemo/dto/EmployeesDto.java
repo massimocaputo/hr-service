@@ -1,11 +1,6 @@
 package com.acn.nemo.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -15,7 +10,13 @@ import java.util.List;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
 import com.acn.nemo.model.Department;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -50,6 +51,7 @@ public class EmployeesDto implements Serializable {
 
 	private BigDecimal salary;
 
+	@Builder.Default
 	private List<Department> departments = new ArrayList<>();
 
 	//private List<JobHistory> jobHistorieList;

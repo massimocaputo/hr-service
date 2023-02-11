@@ -1,18 +1,15 @@
 package com.acn.nemo.mapper;
 
-import com.acn.nemo.dto.CountriesDto;
+import org.mapstruct.Mapper;
+
+import com.acn.nemo.dto.CountryDto;
 import com.acn.nemo.model.Country;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
-
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CountriesMapper {
 
-    CountriesMapper INSTANCE = Mappers.getMapper(CountriesMapper.class);
+    CountryDto modelToDto(Country countries);
 
-    CountriesDto modelToDto(Country countries);
-
-    Country dtoToToModel(CountriesDto countriesDto);
+    Country dtoToToModel(CountryDto countriesDto);
 
 }

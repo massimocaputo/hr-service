@@ -32,13 +32,16 @@ public class EmployeesController {
 
 	@PostMapping("/createEmp")
 	public ResponseEntity<EmployeesDto> createEmployee(@Valid @RequestBody EmployeesDto dto) {
-		logger.info("createEmployee");
+		logger.info("INIT EmployeesController - createEmployee");		
 		EmployeesDto employeesDto = employeesService.createEmployee(dto);
 		if (null != employeesDto) {
+			logger.info("END EmployeesController - createEmployee");
 			return new ResponseEntity<>(employeesDto, HttpStatus.CREATED);
 		} else {
+			logger.info("END EmployeesController - createEmployee");
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		
 	}
 //
 //    @DeleteMapping("/{id}")
@@ -54,7 +57,7 @@ public class EmployeesController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<EmployeesDto> getById(@Valid @NotNull @PathVariable("id") Integer id) {
-		logger.info("getById");
+		logger.info("Init getById");
 		EmployeesDto employeesDto = employeesService.getById(id);
 		if (null != employeesDto) {
 			return new ResponseEntity<>(employeesDto, HttpStatus.FOUND);
@@ -74,10 +77,5 @@ public class EmployeesController {
 		}
 	}
 
-	@ExceptionHandler(ConstraintViolationException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ResponseBody
-	String handleConstraintViolationException(ConstraintViolationException e) {
-		return "not valid due to validation error: " + e.getMessage();
-	}
+
 }

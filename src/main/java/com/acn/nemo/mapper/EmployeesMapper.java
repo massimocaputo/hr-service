@@ -1,11 +1,11 @@
 package com.acn.nemo.mapper;
 
+import java.util.List;
+
+import org.mapstruct.Mapper;
+
 import com.acn.nemo.dto.EmployeesDto;
 import com.acn.nemo.model.Employee;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
-
-import java.util.List;
 
 
 /**
@@ -14,10 +14,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EmployeesMapper {
 
-    /**
-     * The constant INSTANCE.
-     */
-    EmployeesMapper INSTANCE = Mappers.getMapper(EmployeesMapper.class);
 
     /**
      * Model to dto employees dto.

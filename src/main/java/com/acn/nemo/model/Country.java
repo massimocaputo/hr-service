@@ -3,6 +3,8 @@ package com.acn.nemo.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 import java.util.List;
@@ -30,6 +32,7 @@ public class Country implements Serializable {
 	//bi-directional many-to-one association to Region
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="region_id", nullable=false)
+	@JsonIgnore
 	private Region region;
 
 	//bi-directional many-to-one association to Location

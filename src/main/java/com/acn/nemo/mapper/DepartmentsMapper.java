@@ -4,7 +4,6 @@
 package com.acn.nemo.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import com.acn.nemo.dto.DepartmentsDto;
 import com.acn.nemo.model.Department;
@@ -12,10 +11,8 @@ import com.acn.nemo.model.Department;
 /**
  * The interface Departments mapper.
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface DepartmentsMapper {
-
-	DepartmentsMapper INSTANCE = Mappers.getMapper(DepartmentsMapper.class);
 
 	/**
 	 * Modelto dto departments dto.

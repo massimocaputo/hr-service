@@ -8,8 +8,10 @@ import java.math.BigDecimal;
 
 @Data
 public class JobsDto implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private String jobId;
+	
+    private static final long serialVersionUID = 7186381847828240537L;
+
+	private String jobId;
 
     private String jobTitle;
 

@@ -1,10 +1,9 @@
 package com.acn.nemo.controller;
 
-import com.acn.nemo.dto.EmployeesDto;
-import com.acn.nemo.service.EmployeesService;
+import java.util.List;
 
-import lombok.extern.log4j.Log4j;
-import lombok.extern.log4j.Log4j2;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,13 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import com.acn.nemo.dto.EmployeesDto;
+import com.acn.nemo.service.EmployeesService;
 
 @RestController
 @RequestMapping("/employee")

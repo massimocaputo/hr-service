@@ -1,4 +1,4 @@
-package com.acn.nemo.advice;
+package com.acn.nemo.exception;
 
 import java.io.Serializable;
 

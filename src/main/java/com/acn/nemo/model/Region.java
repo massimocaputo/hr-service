@@ -17,7 +17,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 /**
@@ -31,6 +33,8 @@ import lombok.Data;
  * Instantiates a new region.
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @NamedQuery(name="Region.findAll", query="SELECT r FROM Region r")
 public class Region implements Serializable {
 	

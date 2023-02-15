@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.acn.nemo.dto.RegionsDto;
 import com.acn.nemo.mapper.RegionMapper;
@@ -18,6 +19,7 @@ import com.acn.nemo.service.RegionsService;
  * The Class RegionsServiceImpl.
  */
 @Service
+@Transactional(readOnly = true)
 public class RegionsServiceImpl implements RegionsService {
 	
 	/** The Constant logger. */

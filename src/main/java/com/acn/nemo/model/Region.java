@@ -1,6 +1,7 @@
 package com.acn.nemo.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 
@@ -23,22 +26,33 @@ import lombok.Data;
  */
 @Entity
 @Table(name="regions")
+
+/**
+ * Instantiates a new region.
+ */
 @Data
 @NamedQuery(name="Region.findAll", query="SELECT r FROM Region r")
 public class Region implements Serializable {
-	private static final long serialVersionUID = 1L;
+	
 
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 7297550691058136283L;
+
+	/** The region id. */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="region_id", unique=true, nullable=false)
 	private Long regionId;
 
+	/** The region name. */
 	@Column(name="region_name", length=25)
 	private String regionName;
 
+	/** The countries. */
 	//bi-directional many-to-one association to Country
 	@OneToMany(mappedBy="region", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Country> countries;
+	@JsonManagedReference
+	private List<Country> countries  = new ArrayList<>();
 
 
 }

@@ -10,41 +10,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.acn.nemo.model.Department;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
- * To string.
- *
- * @return the java.lang. string
+ * Instantiates a new employees dto.
  */
 @Data
-
-/**
- * Instantiates a new employees dto.
- */
-@NoArgsConstructor
-
-/**
- * Instantiates a new employees dto.
- *
- * @param employeeId the employee id
- * @param commissionPct the commission pct
- * @param departmentId the department id
- * @param email the email
- * @param firstName the first name
- * @param hireDate the hire date
- * @param jobId the job id
- * @param lastName the last name
- * @param managerId the manager id
- * @param phoneNumber the phone number
- * @param salary the salary
- * @param departments the departments
- */
-@AllArgsConstructor
 public class EmployeesDto implements Serializable {
     
     /** The Constant serialVersionUID. */
@@ -88,9 +59,9 @@ public class EmployeesDto implements Serializable {
 	private BigDecimal salary;
 
 	/** The departments. */
-	private List<Department> departments;
+//	private List<DepartmentsDto> departments;
 
-//	@Builder.Default
-//	private List<JobHistory> jobHistories = new ArrayList<>();
+
+//	private List<JobHistoryDto> jobHistories;
 
 }

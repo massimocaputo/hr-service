@@ -4,12 +4,15 @@ import org.mapstruct.Mapper;
 
 import com.acn.nemo.dto.CountryDto;
 import com.acn.nemo.model.Country;
+import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses= {LocationMapper.class} )
 public interface CountriesMapper {
 
     CountryDto modelToDto(Country countries);
 
-    Country dtoToToModel(CountryDto countriesDto);
+    
+	@Mapping(target = "region", ignore = true)
+	Country dtoToToModel(CountryDto countriesDto);
 
 }

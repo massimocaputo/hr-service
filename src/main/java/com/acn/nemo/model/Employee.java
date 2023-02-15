@@ -1,16 +1,26 @@
 package com.acn.nemo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import lombok.Data;
 
 
 /**
@@ -24,9 +34,6 @@ import java.util.List;
  * Instantiates a new employee.
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
 public class Employee implements Serializable {
 	
@@ -82,15 +89,15 @@ public class Employee implements Serializable {
 
 	/** The departments. */
 	//bi-directional many-to-one association to Department
-	@Builder.Default
 	@OneToMany(mappedBy="employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Department> departments = new ArrayList<>();
+	@JsonManagedReference
+	private List<Department> departments;
 
 	/** The job histories. */
 	//bi-directional many-to-one association to JobHistory
-	@Builder.Default
 	@OneToMany(mappedBy="employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<JobHistory> jobHistories = new ArrayList<>();
+	@JsonManagedReference
+	private List<JobHistory> jobHistories;
 
 	
 

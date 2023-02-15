@@ -1,13 +1,26 @@
 package com.acn.nemo.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 
 /**
@@ -21,8 +34,6 @@ import java.util.List;
  * Instantiates a new department.
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @NamedQuery(name="Department.findAll", query="SELECT d FROM Department d")
 public class Department implements Serializable {
 	
@@ -43,17 +54,21 @@ public class Department implements Serializable {
 	//bi-directional many-to-one association to Employee
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="manager_id")
+	@JsonBackReference
 	private Employee employee;
 
 	/** The location. */
 	//bi-directional many-to-one association to Location
 	@ManyToOne(fetch=FetchType.LAZY)
+	@EqualsAndHashCode.Exclude
 	@JoinColumn(name="location_id")
+	@JsonBackReference
 	private Location location;
 
 	/** The job histories. */
 	//bi-directional many-to-one association to JobHistory
-	@OneToMany(mappedBy="department")
+	@OneToMany(mappedBy="department", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<JobHistory> jobHistories;
 
 	

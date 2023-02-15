@@ -1,13 +1,27 @@
 package com.acn.nemo.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
-
-import java.util.List;
+import lombok.EqualsAndHashCode;
 
 
 /**
@@ -40,13 +54,14 @@ public class Location implements Serializable {
 
 	//bi-directional many-to-one association to Department
 	@OneToMany(mappedBy="location", fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonIgnore
-	private List<Department> departments;
+	@JsonManagedReference
+	private List<Department> departments  = new ArrayList<>();
 
 	//bi-directional many-to-one association to Country
 	@ManyToOne(fetch=FetchType.LAZY)
+	@EqualsAndHashCode.Exclude
 	@JoinColumn(name="country_id", nullable=false)
-	@JsonIgnore
+	@JsonBackReference
 	private Country country;
 
 

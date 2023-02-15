@@ -1,13 +1,10 @@
 package com.acn.nemo.dto;
 
 
-import lombok.Data;
-
 import java.io.Serializable;
+import java.util.List;
 
-/**
- * Instantiates a new locations dto.
- */
+import lombok.Data;
 
 /**
  * Instantiates a new locations dto.
@@ -32,6 +29,9 @@ public class LocationsDto implements Serializable {
 
     /** The state province. */
     private String stateProvince;
+    
+    /** The departments. */
+    private List<DepartmentsDto> departments;
 
 
 }

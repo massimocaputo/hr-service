@@ -3,11 +3,9 @@
  */
 package com.acn.nemo.mapper;
 
-import org.mapstruct.Mapper;
-
 import com.acn.nemo.dto.DepartmentsDto;
 import com.acn.nemo.model.Department;
-import org.mapstruct.Mapping;
+import org.mapstruct.Mapper;
 
 /**
  * The interface Departments mapper.
@@ -29,6 +27,5 @@ public interface DepartmentsMapper {
 	 * @param dto the dto
 	 * @return the department
 	 */
-	@Mapping(target = "location", ignore = true)
 	Department dtoToModel(DepartmentsDto dto);
 }

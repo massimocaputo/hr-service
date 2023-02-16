@@ -16,7 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -54,7 +53,6 @@ public class Department implements Serializable {
 	//bi-directional many-to-one association to Employee
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="manager_id")
-	@JsonBackReference
 	private Employee employee;
 
 	/** The location. */
@@ -62,7 +60,6 @@ public class Department implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@JoinColumn(name="location_id")
-	@JsonBackReference
 	private Location location;
 
 	/** The job histories. */

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import com.acn.nemo.dto.RegionsDto;
 import com.acn.nemo.model.Region;
 
-@Mapper(componentModel = "spring", uses = {CountriesMapper.class, LocationMapper.class, DepartmentsMapper.class, EmployeesMapper.class})
+@Mapper(componentModel = "spring")
 public interface RegionMapper {
 	
 	

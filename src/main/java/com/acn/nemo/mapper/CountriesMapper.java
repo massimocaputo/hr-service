@@ -6,13 +6,11 @@ import com.acn.nemo.dto.CountryDto;
 import com.acn.nemo.model.Country;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses= {LocationMapper.class} )
+@Mapper(componentModel = "spring")
 public interface CountriesMapper {
 
     CountryDto modelToDto(Country countries);
 
-    
-	@Mapping(target = "region", ignore = true)
-	Country dtoToToModel(CountryDto countriesDto);
+    Country dtoToToModel(CountryDto countriesDto);
 
 }

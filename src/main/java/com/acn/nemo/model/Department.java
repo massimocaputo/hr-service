@@ -19,8 +19,10 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 /**
@@ -29,11 +31,9 @@ import lombok.EqualsAndHashCode;
  */
 @Entity
 @Table(name="departments")
-
-/**
- * Instantiates a new department.
- */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @NamedQuery(name="Department.findAll", query="SELECT d FROM Department d")
 public class Department implements Serializable {
 	

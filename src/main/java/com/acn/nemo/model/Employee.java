@@ -20,7 +20,9 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 /**
@@ -29,11 +31,9 @@ import lombok.Data;
  */
 @Entity
 @Table(name="employees")
-
-/**
- * Instantiates a new employee.
- */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
 public class Employee implements Serializable {
 	

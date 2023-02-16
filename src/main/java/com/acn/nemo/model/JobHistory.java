@@ -5,8 +5,10 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -17,11 +19,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name="job_history")
-
-/**
- * Instantiates a new job history.
- */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @NamedQuery(name="JobHistory.findAll", query="SELECT j FROM JobHistory j")
 public class JobHistory implements Serializable {
 	

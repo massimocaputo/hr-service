@@ -28,10 +28,6 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @Table(name="regions")
-
-/**
- * Instantiates a new region.
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

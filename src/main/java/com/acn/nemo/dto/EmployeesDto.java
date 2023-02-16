@@ -10,12 +10,16 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Instantiates a new employees dto.
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeesDto implements Serializable {
     
     /** The Constant serialVersionUID. */

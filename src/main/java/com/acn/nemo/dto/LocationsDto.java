@@ -4,12 +4,16 @@ package com.acn.nemo.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Instantiates a new locations dto.
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class LocationsDto implements Serializable {
 	
   	/** The Constant serialVersionUID. */

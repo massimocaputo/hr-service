@@ -65,7 +65,6 @@ public class Location implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@JoinColumn(name="country_id", nullable=false)
-	@JsonBackReference
 	private Country country;
 
 

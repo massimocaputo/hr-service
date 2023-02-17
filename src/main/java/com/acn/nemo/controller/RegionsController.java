@@ -20,6 +20,7 @@ import com.acn.nemo.service.RegionsService;
 @Validated
 @RestController
 @RequestMapping("/regions")
+@RequiredArgsConstructor
 public class RegionsController {
 	
 	private static final Logger logger = LogManager.getLogger(RegionsController.class);

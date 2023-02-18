@@ -50,8 +50,8 @@ public class Job implements Serializable {
 	private BigDecimal minSalary;
 
 	//bi-directional many-to-one association to JobHistory
-//	@OneToMany(mappedBy="job", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-//	@JsonManagedReference
-//	private List<JobHistory> jobHistories;
+	@OneToMany(mappedBy="job", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<JobHistory> jobHistories;
 
 }

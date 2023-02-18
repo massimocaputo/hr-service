@@ -10,7 +10,7 @@ import org.mapstruct.Mapper;
 /**
  * The interface Departments mapper.
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses= {EmployeesMapper.class, JobHistoryMapper.class})
 public interface DepartmentsMapper {
 
 	/**

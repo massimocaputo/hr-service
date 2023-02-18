@@ -8,7 +8,7 @@ import com.acn.nemo.model.Country;
 /**
  * The Interface CountriesMapper.
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {LocationMapper.class})
 public interface CountriesMapper {
 
     /**

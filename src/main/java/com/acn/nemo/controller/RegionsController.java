@@ -5,26 +5,27 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.acn.nemo.dto.RegionsDto;
 import com.acn.nemo.service.RegionsService;
 
-@Validated
+import lombok.extern.log4j.Log4j2;
+
+
 @RestController
-@RequestMapping("/regions")
-@RequiredArgsConstructor
+@RequestMapping("api/regions")
+@Validated
+@Log4j2
 public class RegionsController {
-	
-	private static final Logger logger = LogManager.getLogger(RegionsController.class);
 
     @Autowired
     private RegionsService regionsService;
@@ -45,28 +46,30 @@ public class RegionsController {
 //        regionsService.update(id, dto);
 //    }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}" , produces = "application/json")
     public ResponseEntity<RegionsDto> getById(@Valid @NotNull @PathVariable("id") String id) {
-    	logger.info("Init- RegionsController: getById");
+    	log.info("Init- RegionsController: getById");
     	RegionsDto region = regionsService.getById(id);
     	if( ObjectUtils.isNotEmpty(region)) {
-    		logger.info("End- RegionsController: getById");
+    		log.info("End- RegionsController: getById");
     		return new ResponseEntity<>(region, HttpStatus.FOUND);
     	}else {
-    		logger.info("End- RegionsController: getById");
+    		log.warn("Not Region find");
+    		log.warn("End- RegionsController: getById");
     		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     	}
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public ResponseEntity<List<RegionsDto>> getAllRegions() {
-    	logger.info("Init- RegionsController: getAllRegions");
+    	log.info("Init- RegionsController: getAllRegions");
     	List<RegionsDto> dtos = regionsService.findAllRegions();
     	if( ObjectUtils.isNotEmpty(dtos)) {
-    		logger.info("End- RegionsController: getAllRegions");
+    		log.info(String.format("Region %s: ", dtos));
+    		log.info("End- RegionsController: getAllRegions");
     		return new ResponseEntity<>(dtos, HttpStatus.FOUND);
     	}else {
-    		logger.info("End- RegionsController: getAllRegions");
+    		log.warn("Not Regions find");
     		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     	}
     }

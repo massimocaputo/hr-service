@@ -61,6 +61,7 @@ public class JobHistory implements Serializable {
 	//bi-directional many-to-one association to Job
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="job_id", nullable=false)
+	@JsonBackReference
 	private Job job;
 
 }

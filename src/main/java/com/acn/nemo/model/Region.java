@@ -1,7 +1,6 @@
 package com.acn.nemo.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -52,7 +51,7 @@ public class Region implements Serializable {
 	//bi-directional many-to-one association to Country
 	@OneToMany(mappedBy="region", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
-	private List<Country> countries  = new ArrayList<>();
+	private List<Country> countries;
 
 
 }

@@ -15,15 +15,16 @@ import com.acn.nemo.model.Region;
 import com.acn.nemo.repository.RegionsRepository;
 import com.acn.nemo.service.RegionsService;
 
+import lombok.extern.log4j.Log4j2;
+
 /**
  * The Class RegionsServiceImpl.
  */
 @Service
 @Transactional(readOnly = true)
+@Log4j2
 public class RegionsServiceImpl implements RegionsService {
 	
-	/** The Constant logger. */
-	private static final Logger logger = LogManager.getLogger(RegionsServiceImpl.class);
 	
 	/** The regions repository. */
 	@Autowired
@@ -42,10 +43,14 @@ public class RegionsServiceImpl implements RegionsService {
 	 */
 	@Override
 	public RegionsDto getById(String id) {
+		log.info("INIT getById");
 		Optional<Region> valueRegion = regionsRepository.findById(Long.valueOf(id));
 		if( valueRegion.isPresent()) {
+			log.info(String.format("Region %s found", valueRegion.get().getRegionName()));
+			log.info("END getById");
 			return regionMapper.modelToDto(valueRegion.get());
 		}		
+		log.info("END getById");
 		return null;
 	}
 
@@ -57,7 +62,7 @@ public class RegionsServiceImpl implements RegionsService {
 	 */
 	@Override
 	public List<RegionsDto> findAllRegions() {
-		logger.info("Init- RegionsServiceImpl: findAllRegions");
+		log.info("Init- RegionsServiceImpl: findAllRegions");
 		return regionMapper.modelListToDtoList(regionsRepository.findAll());
 	}
 

@@ -20,7 +20,6 @@ import com.acn.nemo.exception.DuplicateException;
 import com.acn.nemo.exception.NotFoundException;
 import com.acn.nemo.service.RegionsService;
 
-import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 

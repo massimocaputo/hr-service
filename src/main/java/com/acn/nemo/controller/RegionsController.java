@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acn.nemo.dto.RegionsDto;
+import com.acn.nemo.exception.DuplicateException;
 import com.acn.nemo.exception.NotFoundException;
 import com.acn.nemo.service.RegionsService;
 
@@ -49,8 +50,7 @@ public class RegionsController {
 //    }
 
     @GetMapping(value = "/{id}" , produces = "application/json")
-    @SneakyThrows
-    public ResponseEntity<RegionsDto> getById(@Valid @NotNull @PathVariable("id") String id) {
+    public ResponseEntity<RegionsDto> getById(@Valid @NotNull @PathVariable("id") String id) throws NotFoundException  {
     	log.info("Init- RegionsController: getById");
     	
     	RegionsDto region = regionsService.getById(id);
@@ -64,8 +64,7 @@ public class RegionsController {
     }
 
     @GetMapping(produces = "application/json")
-    @SneakyThrows
-    public ResponseEntity<List<RegionsDto>> getAllRegions() {
+    public ResponseEntity<List<RegionsDto>> getAllRegions() throws NotFoundException {
     	log.info("Init- RegionsController: getAllRegions");
     	List<RegionsDto> dtos = regionsService.findAllRegions();
     	
@@ -79,5 +78,14 @@ public class RegionsController {
     		log.warn(msg);
     		throw new NotFoundException(msg);
     	}
+    }
+    
+    
+    @GetMapping(value="test" ,produces = "application/json")
+    public ResponseEntity<String> prova() throws DuplicateException {
+    	if(1 == 1) {
+    		throw new DuplicateException();
+    	}
+    	return new ResponseEntity<>("prova", HttpStatus.OK);
     }
 }

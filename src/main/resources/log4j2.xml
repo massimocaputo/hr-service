@@ -9,6 +9,7 @@
 		<Console name="Console" target="SYSTEM_OUT" follow="true">
 			<PatternLayout pattern="${LOG_PATTERN}" />
 		</Console>
+		
 		<RollingFile name="appLog"
 			fileName="${APP_LOG_ROOT}/HR_SERVICE/application.log"
 			filePattern="${APP_LOG_ROOT}/HR_SERVICE/application-%d{yyyy-MM-dd}-%i.log.gz"

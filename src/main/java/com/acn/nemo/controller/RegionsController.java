@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acn.nemo.dto.RegionsDto;
+import com.acn.nemo.exception.NotFoundException;
 import com.acn.nemo.service.RegionsService;
 
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 
@@ -47,30 +49,35 @@ public class RegionsController {
 //    }
 
     @GetMapping(value = "/{id}" , produces = "application/json")
+    @SneakyThrows
     public ResponseEntity<RegionsDto> getById(@Valid @NotNull @PathVariable("id") String id) {
     	log.info("Init- RegionsController: getById");
+    	
     	RegionsDto region = regionsService.getById(id);
-    	if( ObjectUtils.isNotEmpty(region)) {
-    		log.info("End- RegionsController: getById");
-    		return new ResponseEntity<>(region, HttpStatus.FOUND);
-    	}else {
-    		log.warn("Not Region find");
-    		log.warn("End- RegionsController: getById");
-    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    	if( ObjectUtils.isEmpty(region)) {
+    		String msg = String.format("Region: %s non trovato",id);
+    		
+    		log.warn(msg);
+    		throw new NotFoundException(msg);
     	}
+    	return new ResponseEntity<>(region, HttpStatus.OK);
     }
 
     @GetMapping(produces = "application/json")
+    @SneakyThrows
     public ResponseEntity<List<RegionsDto>> getAllRegions() {
     	log.info("Init- RegionsController: getAllRegions");
     	List<RegionsDto> dtos = regionsService.findAllRegions();
+    	
     	if( ObjectUtils.isNotEmpty(dtos)) {
     		log.info(String.format("Region %s: ", dtos));
     		log.info("End- RegionsController: getAllRegions");
     		return new ResponseEntity<>(dtos, HttpStatus.FOUND);
     	}else {
-    		log.warn("Not Regions find");
-    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    		String msg = "Region non trovato";
+    		
+    		log.warn(msg);
+    		throw new NotFoundException(msg);
     	}
     }
 }

@@ -7,11 +7,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-//@JsonTypeInfo(
-//        use = JsonTypeInfo.Id.NAME, 
-//        include = JsonTypeInfo.As.PROPERTY, 
-//        property = "type")
-public class Violation implements Serializable{
+public class Validation implements Serializable{
 
 	/**
 	 * 

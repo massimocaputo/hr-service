@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class ErrorHandlingControllerAdvice {
+public class ErrorHandlingValidation {
 
 	@ExceptionHandler(ConstraintViolationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -19,7 +19,7 @@ class ErrorHandlingControllerAdvice {
 	ValidationErrorResponse onConstraintValidationException(ConstraintViolationException e) {
 		ValidationErrorResponse error = new ValidationErrorResponse();
 		for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
-			error.getViolations().add(new Violation(violation.getPropertyPath().toString(), violation.getMessage()));
+			error.getViolations().add(new Validation(violation.getPropertyPath().toString(), violation.getMessage()));
 		}
 		return error;
 	}
@@ -30,7 +30,7 @@ class ErrorHandlingControllerAdvice {
 	ValidationErrorResponse onMethodArgumentNotValidException(MethodArgumentNotValidException e) {
 		ValidationErrorResponse error = new ValidationErrorResponse();
 		for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
-			error.getViolations().add(new Violation(fieldError.getField(), fieldError.getDefaultMessage()));
+			error.getViolations().add(new Validation(fieldError.getField(), fieldError.getDefaultMessage()));
 		}
 		return error;
 	}

@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class ValidationErrorResponse {
 
-	 private List<Violation> violations = new ArrayList<>();
+	 private List<Validation> violations = new ArrayList<>();
 
 
 }

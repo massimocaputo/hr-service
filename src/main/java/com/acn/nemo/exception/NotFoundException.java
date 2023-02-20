@@ -1,6 +1,8 @@
 package com.acn.nemo.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -16,6 +18,8 @@ import lombok.Setter;
  * @param message the new message
  */
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class NotFoundException extends Exception {
 
 	/** The Constant serialVersionUID. */
@@ -24,23 +28,7 @@ public class NotFoundException extends Exception {
 	/** The message. */
 	private String message = "Rsiorsa non trovata";
 
-	/**
-	 * Instantiates a new not found exception.
-	 *
-	 * @param message the message
-	 */
-	public NotFoundException(String message) {
-		super(message);
-		this.message = message;
-	}
-
-	/**
-	 * Instantiates a new not found exception.
-	 */
-	public NotFoundException() {
-		super();
-	}
-
+	
 	
 
 	

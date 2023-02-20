@@ -13,24 +13,24 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 
 	@ExceptionHandler(NotFoundException.class)
-	public final ResponseEntity<ErrorResponse> exceptionNotFoundHandler(Exception ex){
+	public final ResponseEntity<ErrorResponse> exceptionNotFoundHandler(NotFoundException ex){
 		
-		ErrorResponse error = new ErrorResponse();
-		error.setCode(HttpStatus.NOT_FOUND.value());
-		error.setMsg(ex.getMessage());
-			
+		ErrorResponse error = ErrorResponse.builder()
+								.code(HttpStatus.NOT_FOUND.value())
+								.msg(ex.getMessage())
+								.build();			
 		return new ResponseEntity<>(error, new HttpHeaders(),HttpStatus.NOT_FOUND);
 	}
 	
 	
 	
 	@ExceptionHandler(DuplicateException.class)
-	public final ResponseEntity<ErrorResponse> exceptionDuplicateHandler(Exception ex){
+	public final ResponseEntity<ErrorResponse> exceptionDuplicateHandler(DuplicateException ex){
 		
-		ErrorResponse error = new ErrorResponse();
-		error.setCode(HttpStatus.CONFLICT.value());
-		error.setMsg( ((DuplicateException) ex ).getMessage());
-			
+		ErrorResponse error = ErrorResponse.builder()
+								.code(HttpStatus.CONFLICT.value())
+								.msg(ex.getMessage())
+								.build();			
 		return new ResponseEntity<>(error, new HttpHeaders(),HttpStatus.CONFLICT);
 	}
 }

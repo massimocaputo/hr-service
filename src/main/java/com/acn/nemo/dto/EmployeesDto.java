@@ -26,8 +26,8 @@ public class EmployeesDto implements Serializable {
     private static final long serialVersionUID = 1L;
    
     /** The employee id. */
-    @NotEmpty(message = "{employeeId.notempty}")
-	@Size(min = 2, max = 3, message = "{employeeId.size}")
+    @NotEmpty(message = "{employeesDto.notEmpty.employeeId}")
+	@Size(min = 2, max = 3, message = "{employeesDto.size.employeeId}")
     private String employeeId;
 
 	/** The commission pct. */
@@ -37,7 +37,7 @@ public class EmployeesDto implements Serializable {
 	private Long departmentId;
 
 	/** The email. */
-	@NotEmpty(message = "{email.notempty}")
+	@NotEmpty(message = "{employeesDto.notEmpty.email}")
 	@Email
 	private String email;
 

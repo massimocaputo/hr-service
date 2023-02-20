@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  */
 public interface RegionsRepository extends JpaRepository<Region, Long>, JpaSpecificationExecutor<Region> {
 
+	Region findByRegionName(String regionName);
+
 }

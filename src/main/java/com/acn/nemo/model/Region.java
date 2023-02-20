@@ -39,7 +39,7 @@ public class Region implements Serializable {
 
 	/** The region id. */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="region_id", unique=true, nullable=false)
 	private Long regionId;
 

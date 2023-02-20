@@ -2,6 +2,8 @@ package com.acn.nemo.service;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import com.acn.nemo.dto.RegionsDto;
 import com.acn.nemo.exception.NotFoundException;
 
@@ -32,6 +34,8 @@ public interface RegionsService {
 	 * @throws NotFoundException 
 	 */
 	void inserisci(RegionsDto dto) throws NotFoundException;
+
+	RegionsDto getByDescription(String regionName);
 
 
     

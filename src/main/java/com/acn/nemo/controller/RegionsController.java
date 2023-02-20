@@ -41,7 +41,7 @@ public class RegionsController {
     public ResponseEntity<InfoMsg> createRegion(@Valid @RequestBody RegionsDto dto) {
     	log.info("Salviamo Region con codice " + dto.getRegionName());
     	 
-    	RegionsDto trovato = regionsService.getById(dto.getRegionId());
+    	RegionsDto trovato = regionsService.getByDescription(dto.getRegionName());
     	if(ObjectUtils.isNotEmpty(trovato)) {
     		throw new DuplicateException();
     	}

@@ -85,4 +85,13 @@ public class RegionsServiceImpl implements RegionsService {
 	}
 
 
+	@Override
+	public RegionsDto getByDescription(String regionName) {
+		log.info("Init- RegionsServiceImpl: getByDescription");
+		RegionsDto dto = regionMapper.modelToDto(regionsRepository.findByRegionName(regionName));
+		log.info("End- RegionsServiceImpl: getByDescription");
+		return dto;
+	}
+
+
 }

@@ -1,6 +1,5 @@
 package com.acn.nemo.exception;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;

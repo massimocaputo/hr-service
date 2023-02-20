@@ -19,7 +19,11 @@ public class ValidationErrorHandling {
 	ValidationErrorResponse onConstraintValidationException(ConstraintViolationException e) {
 		ValidationErrorResponse error = ValidationErrorResponse.builder().build();
 		for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
-			error.getViolations().add(new Validation(violation.getPropertyPath().toString(), violation.getMessage()));
+			error.getViolations().add(Validation.builder()
+												.fieldName(violation.getPropertyPath().toString())
+												.message(violation.getMessage())
+												.build()
+										);
 		}
 		return error;
 	}
@@ -30,18 +34,15 @@ public class ValidationErrorHandling {
 	ValidationErrorResponse onMethodArgumentNotValidException(MethodArgumentNotValidException e) {
 		ValidationErrorResponse error = ValidationErrorResponse.builder().build();
 		for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
-			error.getViolations().add(new Validation(fieldError.getField(), fieldError.getDefaultMessage()));
+			error.getViolations().add(Validation.builder()
+												.fieldName(fieldError.getField())
+												.message(fieldError.getDefaultMessage())
+												.build()
+									 );
 		}
 		return error;
 	}
 	
-//	@ExceptionHandler(NoSuchElementException.class)
-////	@ResponseStatus(HttpStatus.NOT_FOUND)
-////	@ResponseBody
-//	public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e){
-//		return new ResponseEntity<String>("Input field not present", HttpStatus.NOT_FOUND);
-//		
-//	}
-	
+
 
 }

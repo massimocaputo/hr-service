@@ -20,6 +20,7 @@ import com.acn.nemo.exception.DuplicateException;
 import com.acn.nemo.exception.NotFoundException;
 import com.acn.nemo.service.RegionsService;
 
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 
@@ -49,7 +50,8 @@ public class RegionsController {
 //    }
 
     @GetMapping(value = "/{id}" , produces = "application/json")
-    public ResponseEntity<RegionsDto> getById(@Valid @NotNull @PathVariable("id") String id) throws NotFoundException  {
+    @SneakyThrows
+    public ResponseEntity<RegionsDto> getById(@Valid @NotNull @PathVariable("id") String id)  {
     	log.info("Init- RegionsController: getById");
     	
     	RegionsDto region = regionsService.getById(id);
@@ -63,7 +65,8 @@ public class RegionsController {
     }
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<RegionsDto>> getAllRegions() throws NotFoundException {
+    @SneakyThrows
+    public ResponseEntity<List<RegionsDto>> getAllRegions() {
     	log.info("Init- RegionsController: getAllRegions");
     	List<RegionsDto> dtos = regionsService.findAllRegions();
     	
@@ -81,10 +84,8 @@ public class RegionsController {
     
     
     @GetMapping(value="test" ,produces = "application/json")
-    public ResponseEntity<String> prova() throws DuplicateException {
-    	if(1 == 1) {
-    		throw new DuplicateException();
-    	}
-    	return new ResponseEntity<>("prova", HttpStatus.OK);
+    @SneakyThrows
+    public ResponseEntity<String> prova(){
+    	throw new DuplicateException();
     }
 }

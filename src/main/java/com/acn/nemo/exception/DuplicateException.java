@@ -1,7 +1,13 @@
 package com.acn.nemo.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+/**
+ * The Class DuplicateException.
+ */
 
 /**
  * Gets the message.
@@ -15,7 +21,25 @@ import lombok.Setter;
  *
  * @param message the new message
  */
+
+/**
+ * Sets the message.
+ *
+ * @param message the new message
+ */
 @Setter
+
+/**
+ * Instantiates a new duplicate exception.
+ */
+@NoArgsConstructor
+
+/**
+ * Instantiates a new duplicate exception.
+ *
+ * @param message the message
+ */
+@AllArgsConstructor
 public class DuplicateException extends Exception{
 
 	/** The Constant serialVersionUID. */
@@ -24,22 +48,7 @@ public class DuplicateException extends Exception{
 	/** The message. */
 	private String message = "Risorsa duplicata";
 
-	/**
-	 * Instantiates a new duplicate exception.
-	 */
-	public DuplicateException() {
-		super();
-	}
-
-	/**
-	 * Instantiates a new duplicate exception.
-	 *
-	 * @param message the message
-	 */
-	public DuplicateException(String message) {
-		super();
-		this.message = message;
-	}
+	
 	
 	
 }

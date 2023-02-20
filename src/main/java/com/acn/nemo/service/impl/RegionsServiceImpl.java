@@ -3,13 +3,12 @@ package com.acn.nemo.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.acn.nemo.dto.RegionsDto;
+import com.acn.nemo.exception.NotFoundException;
 import com.acn.nemo.mapper.RegionMapper;
 import com.acn.nemo.model.Region;
 import com.acn.nemo.repository.RegionsRepository;
@@ -22,6 +21,10 @@ import lombok.extern.log4j.Log4j2;
  */
 @Service
 @Transactional(readOnly = true)
+
+/** The Constant log. */
+
+/** The Constant log. */
 @Log4j2
 public class RegionsServiceImpl implements RegionsService {
 	
@@ -65,5 +68,21 @@ public class RegionsServiceImpl implements RegionsService {
 		log.info("Init- RegionsServiceImpl: findAllRegions");
 		return regionMapper.modelListToDtoList(regionsRepository.findAll());
 	}
+
+
+	/**
+	 * Inserisci.
+	 *
+	 * @param dto the dto
+	 * @throws NotFoundException 
+	 */
+	@Override
+	@Transactional
+	public void inserisci(RegionsDto dto) throws NotFoundException {
+		log.info("Init- RegionsServiceImpl: inserisci");
+		regionsRepository.save( regionMapper.dtoToModel(dto) );
+		log.info("End- RegionsServiceImpl: inserisci");
+	}
+
 
 }

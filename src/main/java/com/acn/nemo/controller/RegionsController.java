@@ -12,9 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.acn.nemo.dto.InfoMsg;
 import com.acn.nemo.dto.RegionsDto;
 import com.acn.nemo.exception.DuplicateException;
 import com.acn.nemo.exception.NotFoundException;
@@ -32,11 +35,23 @@ public class RegionsController {
 
     @Autowired
     private RegionsService regionsService;
-//
-//    @PostMapping
-//    public String save(@Valid @RequestBody RegionsDto dto) {
-//        return regionsService.save(dto).toString();
-//    }
+
+    @PostMapping(value = "/inserisci", produces = "application/json")
+    @SneakyThrows
+    public ResponseEntity<InfoMsg> createRegion(@Valid @RequestBody RegionsDto dto) {
+    	log.info("Salviamo Region con codice " + dto.getRegionName());
+    	 
+    	RegionsDto trovato = regionsService.getById(dto.getRegionId());
+    	if(ObjectUtils.isNotEmpty(trovato)) {
+    		throw new DuplicateException();
+    	}
+         regionsService.inserisci(dto);
+         
+         return new ResponseEntity<>( (InfoMsg.builder()
+        		 							.message("Inserimento Region Eseguita con successo!")
+        		 							.build())
+        		 					,HttpStatus.CREATED);
+    }
 //
 //    @DeleteMapping("/{id}")
 //    public void delete(@Valid @NotNull @PathVariable("id") Long id) {

@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor	
 @AllArgsConstructor
 public class Validation implements Serializable{
 
@@ -14,7 +16,7 @@ public class Validation implements Serializable{
 	 */
 	private static final long serialVersionUID = 4457173804346440861L;
 
-	private final String fieldName;
+	private String fieldName;
 
-	private final String message;
+	private String message;
 }

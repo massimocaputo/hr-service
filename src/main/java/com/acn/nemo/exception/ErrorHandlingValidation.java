@@ -17,7 +17,7 @@ public class ErrorHandlingValidation {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	ValidationErrorResponse onConstraintValidationException(ConstraintViolationException e) {
-		ValidationErrorResponse error = new ValidationErrorResponse();
+		ValidationErrorResponse error = ValidationErrorResponse.builder().build();
 		for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
 			error.getViolations().add(new Validation(violation.getPropertyPath().toString(), violation.getMessage()));
 		}
@@ -28,7 +28,7 @@ public class ErrorHandlingValidation {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	ValidationErrorResponse onMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-		ValidationErrorResponse error = new ValidationErrorResponse();
+		ValidationErrorResponse error = ValidationErrorResponse.builder().build();
 		for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
 			error.getViolations().add(new Validation(fieldError.getField(), fieldError.getDefaultMessage()));
 		}

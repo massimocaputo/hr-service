@@ -43,7 +43,7 @@ public class RegionsController {
     	 
     	RegionsDto trovato = regionsService.getByDescription(dto.getRegionName());
     	if(ObjectUtils.isNotEmpty(trovato)) {
-    		throw new DuplicateException();
+    		throw new DuplicateException("Risorsa Duplicata");
     	}
          regionsService.inserisci(dto);
          

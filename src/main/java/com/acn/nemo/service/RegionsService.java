@@ -2,8 +2,6 @@ package com.acn.nemo.service;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import com.acn.nemo.dto.RegionsDto;
 import com.acn.nemo.exception.NotFoundException;
 

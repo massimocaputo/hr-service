@@ -31,11 +31,26 @@ public class GlobalExceptionHandler {
 	 * @param ex the ex
 	 * @return the response entity
 	 */
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<Map<String, List<String>>> handleValidationErrors(MethodArgumentNotValidException ex) {
+	@ExceptionHandler({MethodArgumentNotValidException.class})
+	public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException ex) {
 		List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(FieldError::getDefaultMessage)
-				.collect(Collectors.toList());
-		return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+								.collect(Collectors.toList());
+		ErrorResponse errorResponse = ErrorResponse.builder()
+													.code(HttpStatus.BAD_REQUEST.value())
+													.message(errors)
+													.build();
+		return new ResponseEntity<>(errorResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+	}
+	
+	
+	@ExceptionHandler(NumberFormatException.class)
+	public ResponseEntity<ErrorResponse> handleNumberFormatException(NumberFormatException ex) {
+		List<String> errors = Arrays.asList(ex.getMessage());
+		ErrorResponse errorResponse = ErrorResponse.builder()
+													.code(HttpStatus.BAD_REQUEST.value())
+													.message(errors)
+													.build();
+		return new ResponseEntity<>(errorResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 	
 	
@@ -46,9 +61,13 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(ConstraintViolationException.class)
-	public ResponseEntity<Map<String, List<String>>> handleConstraintErrors(ConstraintViolationException ex) {	
+	public ResponseEntity<ErrorResponse> handleConstraintErrors(ConstraintViolationException ex) {	
 		List<String> errors = ex.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
-		return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		ErrorResponse errorResponse = ErrorResponse.builder()
+													.code(HttpStatus.BAD_REQUEST.value())
+													.message(errors)
+													.build();
+		return new ResponseEntity<>(errorResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 	
 	/**
@@ -58,9 +77,14 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(NotFoundException.class)
-	 public ResponseEntity<Map<String, List<String>>> handleNotFoundException(NotFoundException ex) { 
+	 public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex) { 
 	    List<String> errors = Collections.singletonList(ex.getMessage()); 
-	    return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.NOT_FOUND ); 
+	    
+	    ErrorResponse errorResponse = ErrorResponse.builder()
+				    								.code(HttpStatus.NOT_FOUND.value())
+				    								.message(errors)
+				    								.build();
+	    return new ResponseEntity<>(errorResponse, new HttpHeaders(), HttpStatus.NOT_FOUND ); 
 	} 
 
 	
@@ -71,9 +95,14 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(EntityNotFoundException.class)
-	protected ResponseEntity<Map<String, List<String>>> handleEntityNotFoundException(EntityNotFoundException ex) {
+	protected ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException ex) {
 		List<String> errors = Arrays.asList(ex.getMessage());
-		return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+
+	    ErrorResponse errorResponse = ErrorResponse.builder()
+				    								.code(HttpStatus.BAD_REQUEST.value())
+				    								.message(errors)
+				    								.build();
+		return new ResponseEntity<>(errorResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		
 	}
 	
@@ -84,9 +113,14 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(Exception.class)
-	public final ResponseEntity<Map<String, List<String>>> handleGeneralExceptions(Exception ex) {
+	public final ResponseEntity<ErrorResponse> handleGeneralExceptions(Exception ex) {
 	    List<String> errors = Collections.singletonList(ex.getMessage());
-	    return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+	    ErrorResponse errorResponse = ErrorResponse.builder()
+				    								.code(HttpStatus.INTERNAL_SERVER_ERROR.value())
+				    								.message(errors)
+				    								.build();
+	    return new ResponseEntity<>(errorResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	/**
@@ -96,10 +130,16 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(RuntimeException.class)
-	public final ResponseEntity<Map<String, List<String>>> handleRuntimeExceptions(RuntimeException ex) {
+	public final ResponseEntity<ErrorResponse> handleRuntimeExceptions(RuntimeException ex) {
 	    List<String> errors = Collections.singletonList(ex.getMessage());
-	    return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+	    ErrorResponse errorResponse = ErrorResponse.builder()
+				    								.code(HttpStatus.INTERNAL_SERVER_ERROR.value())
+				    								.message(errors)
+				    								.build();
+	    return new ResponseEntity<>(errorResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
 	
 	/**
 	 * Gets the errors map.

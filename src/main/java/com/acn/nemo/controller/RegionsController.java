@@ -97,10 +97,4 @@ public class RegionsController {
     	}
     }
     
-    
-    @GetMapping(value="test" ,produces = "application/json")
-    @SneakyThrows
-    public ResponseEntity<String> prova(){
-    	throw new DuplicateException();
-    }
 }

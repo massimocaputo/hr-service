@@ -9,7 +9,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,14 +22,19 @@ import com.acn.nemo.exception.DuplicateException;
 import com.acn.nemo.exception.NotFoundException;
 import com.acn.nemo.service.RegionsService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 
 @RestController
 @RequestMapping("api/regions")
-@Validated
 @Log4j2
+@Api(value = "hrservice" , tags = "Controller Operazioni su Region")
 public class RegionsController {
 
     @Autowired
@@ -52,21 +56,23 @@ public class RegionsController {
         		 							.build())
         		 					,HttpStatus.CREATED);
     }
-//
-//    @DeleteMapping("/{id}")
-//    public void delete(@Valid @NotNull @PathVariable("id") Long id) {
-//        regionsService.delete(id);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public void update(@Valid @NotNull @PathVariable("id") Long id,
-//                       @Valid @RequestBody RegionsDto dto) {
-//        regionsService.update(id, dto);
-//    }
 
+
+    @ApiOperation(
+    		 value = "Ricerca Region per Id",
+    		 notes = "Ritorna i dati della Region in formato JSON",
+    		 response = RegionsDto.class,
+    		 produces = "application/json"
+    		)
+    @ApiResponses(value = 
+				{
+					@ApiResponse(code = 404 , message = "Region non trovato"),
+					@ApiResponse(code = 200 , message = "Region trovato")
+				}
+    		)    
     @GetMapping(value = "/{id}" , produces = "application/json")
     @SneakyThrows
-    public ResponseEntity<RegionsDto> getById(@Valid @NotNull @PathVariable("id") String id)  {
+    public ResponseEntity<RegionsDto> getById(@ApiParam(value = "Id Region Univoco") @Valid @NotNull @PathVariable("id") String id)  {
     	log.info("Init- RegionsController: getById");
     	
     	RegionsDto region = regionsService.getById(id);
@@ -79,6 +85,19 @@ public class RegionsController {
     	return new ResponseEntity<>(region, HttpStatus.OK);
     }
 
+    @ApiOperation(
+   		 value = "Ricerca All Region",
+   		 notes = "Ritorna tutti i dati delle Region in formato JSON",
+   		 response = RegionsDto.class,
+   		 produces = "application/json"
+   		)
+   @ApiResponses(value = 
+				{
+					@ApiResponse(code = 404 , message = "Region non trovato"),
+					@ApiResponse(code = 200 , message = "Region trovato"),
+					@ApiResponse(code = 302 , message = "Region gi&agrave; presente")
+				}
+   		)
     @GetMapping(produces = "application/json")
     @SneakyThrows
     public ResponseEntity<List<RegionsDto>> getAllRegions() {

@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,20 +18,24 @@ import lombok.Data;
  */
 @Data
 @Builder
+@ApiModel(description = "Region Model")
 public class RegionsDto implements Serializable {
     
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -2375087521949932771L;
 
 	/** The region id. */
-//	private String regionId;
+    @ApiModelProperty(value = "Region id")
+	private String regionId;
 
     /** The region name. */
+    @ApiModelProperty(value = "Nome Region")
 	@NotBlank(message = "Nome region non puo essere vuoto")
     @NotNull(message = "{regionsDto.notNull.regionName}")
     private String regionName;
     
     /** The countries. */
+    @ApiModelProperty(value = "List Country")
     @NotEmpty(message = "{regionsDto.notEmpty.countries}")
     private List<CountryDto> countries;
 

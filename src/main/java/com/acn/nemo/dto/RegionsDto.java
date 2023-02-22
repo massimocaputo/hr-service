@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -49,17 +50,18 @@ public class RegionsDto implements Serializable {
     private static final long serialVersionUID = -2375087521949932771L;
 
 	/** The region id. */
-    @ApiModelProperty(value = "Region id")
+    @ApiModelProperty(notes = "Region id")
 	private String regionId;
 
     /** The region name. */
-    @ApiModelProperty(value = "Nome Region")
+    @ApiModelProperty(notes = "Nome Region")
 	@NotBlank(message = "Nome region non puo essere vuoto")
     @NotNull(message = "{regionsDto.notNull.regionName}")
+    @Size(max = 25 , min = 1)
     private String regionName;
     
     /** The countries. */
-    @ApiModelProperty(value = "List Country")
+    @ApiModelProperty(notes = "List Country")
     @NotEmpty(message = "{regionsDto.notEmpty.countries}")
     private List<CountryDto> countries;
 

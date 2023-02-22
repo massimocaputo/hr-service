@@ -42,7 +42,6 @@ public class Region implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="region_id", unique=true, nullable=false)
-	@ApiModelProperty(notes = "The database generated product ID")
 	private Long regionId;
 
 	/** The region name. */

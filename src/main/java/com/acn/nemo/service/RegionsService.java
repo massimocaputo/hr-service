@@ -29,10 +29,17 @@ public interface RegionsService {
 	 * Inserisci.
 	 *
 	 * @param dto the dto
-	 * @throws NotFoundException 
+	 * @return the regions dto
+	 * @throws NotFoundException the not found exception
 	 */
-	void inserisci(RegionsDto dto) throws NotFoundException;
+	RegionsDto inserisci(RegionsDto dto) throws NotFoundException;
 
+	/**
+	 * Gets the by description.
+	 *
+	 * @param regionName the region name
+	 * @return the by description
+	 */
 	RegionsDto getByDescription(String regionName);
 
 

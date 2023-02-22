@@ -78,10 +78,11 @@ public class RegionsServiceImpl implements RegionsService {
 	 */
 	@Override
 	@Transactional
-	public void inserisci(RegionsDto dto) throws NotFoundException {
+	public RegionsDto inserisci(RegionsDto dto) throws NotFoundException {
 		log.info("Init- RegionsServiceImpl: inserisci");
-		regionsRepository.save( regionMapper.dtoToModel(dto) );
+		Region reg = regionsRepository.save( regionMapper.dtoToModel(dto) );		
 		log.info("End- RegionsServiceImpl: inserisci");
+		return regionMapper.modelToDto(reg);
 	}
 
 

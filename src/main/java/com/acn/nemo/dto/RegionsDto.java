@@ -10,13 +10,37 @@ import javax.validation.constraints.NotNull;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * To string.
+ *
+ * @return the java.lang. string
+ */
+@Data
+
+/**
+ * Instantiates a new regions dto.
+ *
+ * @param regionId the region id
+ * @param regionName the region name
+ * @param countries the countries
+ */
+@AllArgsConstructor
 
 /**
  * Instantiates a new regions dto.
  */
-@Data
+@NoArgsConstructor
+
+/**
+ * To string.
+ *
+ * @return the java.lang. string
+ */
 @Builder
 @ApiModel(description = "Region Model")
 public class RegionsDto implements Serializable {

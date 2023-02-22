@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acn.nemo.dto.InfoMsg;
 import com.acn.nemo.dto.RegionsDto;
 import com.acn.nemo.exception.DuplicateException;
 import com.acn.nemo.exception.NotFoundException;
@@ -31,33 +30,62 @@ import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 
+/**
+ * The Class RegionsController.
+ */
 @RestController
 @RequestMapping("api/regions")
+
+/** The Constant log. */
+
+/** The Constant log. */
 @Log4j2
 @Api(value = "hrservice" , tags = "Controller Operazioni su Region")
 public class RegionsController {
 
+    /** The regions service. */
     @Autowired
     private RegionsService regionsService;
 
+    /**
+     * Creates the region.
+     *
+     * @param dto the dto
+     * @return the response entity
+     */
+    @ApiOperation(
+   		 value = "Crea Region",
+   		 notes = "Ritorna i dati della Region in formato JSON",
+   		 response = RegionsDto.class,
+   		 produces = "application/json"
+   		)
+   @ApiResponses(value = 
+				{
+					@ApiResponse(code = 404 , message = "Region non trovato"),
+					@ApiResponse(code = 201 , message = "Region creata")
+				}
+   		) 
     @PostMapping(value = "/inserisci", produces = "application/json")
     @SneakyThrows
-    public ResponseEntity<InfoMsg> createRegion(@Valid @RequestBody RegionsDto dto) {
+    public ResponseEntity<RegionsDto> createRegion(@ApiParam(value = "RegionDto") @Valid @RequestBody RegionsDto dto) {
     	log.info("Salviamo Region con codice " + dto.getRegionName());
     	 
     	RegionsDto trovato = regionsService.getByDescription(dto.getRegionName());
     	if(ObjectUtils.isNotEmpty(trovato)) {
     		throw new DuplicateException("Risorsa Duplicata");
     	}
-         regionsService.inserisci(dto);
+    	RegionsDto regionCreated =  regionsService.inserisci(dto);
          
-         return new ResponseEntity<>( (InfoMsg.builder()
-        		 							.message("Inserimento Region Eseguita con successo!")
-        		 							.build())
-        		 					,HttpStatus.CREATED);
+         return new ResponseEntity<>( regionCreated,HttpStatus.CREATED);
     }
 
 
+    /**
+     * Gets the by id.
+     *
+     * @param id the id
+     * @return the by id
+     */
     @ApiOperation(
     		 value = "Ricerca Region per Id",
     		 notes = "Ritorna i dati della Region in formato JSON",
@@ -85,6 +113,11 @@ public class RegionsController {
     	return new ResponseEntity<>(region, HttpStatus.OK);
     }
 
+    /**
+     * Gets the all regions.
+     *
+     * @return the all regions
+     */
     @ApiOperation(
    		 value = "Ricerca All Region",
    		 notes = "Ritorna tutti i dati delle Region in formato JSON",

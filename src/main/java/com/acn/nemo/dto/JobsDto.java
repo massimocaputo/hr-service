@@ -1,15 +1,42 @@
 package com.acn.nemo.dto;
 
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * To string.
+ *
+ * @return the java.lang. string
+ */
+@Data
 
 /**
  * Instantiates a new jobs dto.
  */
-@Data
+@NoArgsConstructor
+
+/**
+ * Instantiates a new jobs dto.
+ *
+ * @param jobId the job id
+ * @param jobTitle the job title
+ * @param minSalary the min salary
+ * @param maxSalary the max salary
+ */
+@AllArgsConstructor
+
+/**
+ * To string.
+ *
+ * @return the java.lang. string
+ */
+@Builder
 public class JobsDto implements Serializable {
 	
     /** The Constant serialVersionUID. */

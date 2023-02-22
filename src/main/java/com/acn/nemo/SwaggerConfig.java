@@ -12,12 +12,20 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+/**
+ * The Class SwaggerConfig.
+ */
 @Configuration
 @EnableWebMvc
 public class SwaggerConfig {
 	
 	
 	
+	/**
+	 * Api.
+	 *
+	 * @return the docket
+	 */
 	@Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
@@ -29,10 +37,15 @@ public class SwaggerConfig {
         		  );                                           
     }
 
+	/**
+	 * Meta data.
+	 *
+	 * @return the api info
+	 */
 	private ApiInfo metaData() {
 		return new ApiInfoBuilder()
-				.title("Region Service Example")
-				.description("Spring Boot Rest Api Example")
+				.title("Region Web Service API")
+				.description("Spring Boot Rest Api Region")
 				.version("1.0.0")
 				.license("GNU General Public License")
 				.licenseUrl("https://www.gnu.org/licenses/gpl-3.0.en.html")

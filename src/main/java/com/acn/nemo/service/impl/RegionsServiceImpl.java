@@ -23,8 +23,6 @@ import lombok.extern.log4j.Log4j2;
 @Transactional(readOnly = true)
 
 /** The Constant log. */
-
-/** The Constant log. */
 @Log4j2
 public class RegionsServiceImpl implements RegionsService {
 	
@@ -80,6 +78,9 @@ public class RegionsServiceImpl implements RegionsService {
 	@Transactional
 	public RegionsDto inserisci(RegionsDto dto) throws NotFoundException {
 		log.info("Init- RegionsServiceImpl: inserisci");
+		Integer maxId = regionsRepository.findByMaxId();
+		log.info("MaxID: " + maxId);
+		dto.setRegionId(String.valueOf(maxId+1));
 		Region reg = regionsRepository.save( regionMapper.dtoToModel(dto) );		
 		log.info("End- RegionsServiceImpl: inserisci");
 		return regionMapper.modelToDto(reg);

@@ -8,9 +8,6 @@ import java.sql.Date;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -51,58 +48,58 @@ import lombok.NoArgsConstructor;
  * @return the java.lang. string
  */
 @Builder
-@ApiModel(description = "Employees Model")
+//@ApiModel(description = "Employees Model")
 public class EmployeesDto implements Serializable {
     
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
    
     /** The employee id. */
-    @ApiModelProperty(value = "The employee id")
+    //@ApiModelProperty(value = "The employee id")
     @NotEmpty(message = "{employeesDto.notEmpty.employeeId}")
 	@Size(min = 2, max = 3, message = "{employeesDto.size.employeeId}")
     private String employeeId;
 
 	/** The commission pct. */
-    @ApiModelProperty(value = "The commission pct")
+    //@ApiModelProperty(value = "The commission pct")
 	private BigDecimal commissionPct;
 
 	/** The department id. */
-    @ApiModelProperty(value = "The department id")
+    //@ApiModelProperty(value = "The department id")
 	private Long departmentId;
 
 	/** The email. */
-    @ApiModelProperty(value = "The email")
+    //@ApiModelProperty(value = "The email")
 	@NotEmpty(message = "{employeesDto.notEmpty.email}")
 	@Email
 	private String email;
 
 	/** The first name. */
-    @ApiModelProperty(value = "The first name")
+    //@ApiModelProperty(value = "The first name")
 	private String firstName;
 
 	/** The hire date. */
-    @ApiModelProperty(value = "The hire date")
+    //@ApiModelProperty(value = "The hire date")
 	private Date hireDate;
 
 	/** The job id. */
-    @ApiModelProperty(value = "The job id")
+    //@ApiModelProperty(value = "The job id")
 	private String jobId;
 
 	/** The last name. */
-    @ApiModelProperty(value = "The last name")
+    //@ApiModelProperty(value = "The last name")
 	private String lastName;
 
 	/** The manager id. */
-    @ApiModelProperty(value = "The manager id")
+    //@ApiModelProperty(value = "The manager id")
 	private int managerId;
 
 	/** The phone number. */
-    @ApiModelProperty(value = "The phone number")
+    //@ApiModelProperty(value = "The phone number")
 	private String phoneNumber;
 
 	/** The salary. */
-    @ApiModelProperty(value = "The salary")
+    //@ApiModelProperty(value = "The salary")
 	private BigDecimal salary;
 
 	/** The departments. */

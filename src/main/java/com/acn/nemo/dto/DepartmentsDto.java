@@ -3,8 +3,6 @@ package com.acn.nemo.dto;
 
 import java.io.Serializable;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +36,7 @@ import lombok.NoArgsConstructor;
  * @return the java.lang. string
  */
 @Builder
-@ApiModel(description = "Department Model")
+//@ApiModel(description = "Department Model")
 public class DepartmentsDto implements Serializable {
 	
     
@@ -46,18 +44,18 @@ public class DepartmentsDto implements Serializable {
     private static final long serialVersionUID = 6255630630384500299L;
 
 	/** The department id. */
-    @ApiModelProperty(value = "Department id")
+    //@ApiModelProperty(value = "Department id")
     private Long departmentId;
 
     /** The department name. */
-    @ApiModelProperty(value = "Department name")
+    //@ApiModelProperty(value = "Department name")
     private String departmentName;
     
     /** The employee. */
 //    private List<JobHistoryDto> jobHistories;
     
     /** The employee. */
-    @ApiModelProperty(value = "Employees")
+    //@ApiModelProperty(value = "Employees")
     private EmployeesDto employee;
 
     

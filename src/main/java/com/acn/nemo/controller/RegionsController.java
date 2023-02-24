@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acn.nemo.dto.RegionsDto;
@@ -21,11 +22,7 @@ import com.acn.nemo.exception.DuplicateException;
 import com.acn.nemo.exception.NotFoundException;
 import com.acn.nemo.service.RegionsService;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
@@ -40,7 +37,7 @@ import lombok.extern.log4j.Log4j2;
 
 /** The Constant log. */
 @Log4j2
-@Api(value = "hrservice" , tags = "Controller Operazioni su Region")
+//@Api(value = "hrservice" , tags = "Controller Operazioni su Region")
 public class RegionsController {
 
     /** The regions service. */
@@ -53,21 +50,25 @@ public class RegionsController {
      * @param dto the dto
      * @return the response entity
      */
-    @ApiOperation(
-   		 value = "Crea Region",
-   		 notes = "Ritorna i dati della Region in formato JSON",
-   		 response = RegionsDto.class,
-   		 produces = "application/json"
-   		)
-   @ApiResponses(value = 
-				{
-					@ApiResponse(code = 404 , message = "Region non trovato"),
-					@ApiResponse(code = 201 , message = "Region creata")
-				}
-   		) 
+    @Operation(summary = "Crea Region" , description = "Ritorna i dati della Region in formato JSON",
+    		method = "HHTP", requestBody = @RegionsDto )
+//    @ApiOperation(
+//   		 value = "Crea Region",
+//   		 notes = "Ritorna i dati della Region in formato JSON",
+//   		 response = RegionsDto.class,
+//   		 produces = "application/json"
+//   		)
+//   @ApiResponses(value = 
+//				{
+//					@ApiResponse(code = 404 , message = "Region non trovato"),
+//					@ApiResponse(code = 201 , message = "Region creata")
+//				}
+//   		) 
+  //@ApiParam(value = "RegionDto")
     @PostMapping(value = "/inserisci", produces = "application/json")
     @SneakyThrows
-    public ResponseEntity<RegionsDto> createRegion(@ApiParam(value = "RegionDto") @Valid @RequestBody RegionsDto dto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<RegionsDto> createRegion( @Valid @RequestBody RegionsDto dto) {
     	log.info("Salviamo Region con codice " + dto.getRegionName());
     	 
     	RegionsDto trovato = regionsService.getByDescription(dto.getRegionName());
@@ -86,21 +87,22 @@ public class RegionsController {
      * @param id the id
      * @return the by id
      */
-    @ApiOperation(
-    		 value = "Ricerca Region per Id",
-    		 notes = "Ritorna i dati della Region in formato JSON",
-    		 response = RegionsDto.class,
-    		 produces = "application/json"
-    		)
-    @ApiResponses(value = 
-				{
-					@ApiResponse(code = 404 , message = "Region non trovato"),
-					@ApiResponse(code = 200 , message = "Region trovato")
-				}
-    		)    
+//    @ApiOperation(
+//    		 value = "Ricerca Region per Id",
+//    		 notes = "Ritorna i dati della Region in formato JSON",
+//    		 response = RegionsDto.class,
+//    		 produces = "application/json"
+//    		)
+//    @ApiResponses(value = 
+//				{
+//					@ApiResponse(code = 404 , message = "Region non trovato"),
+//					@ApiResponse(code = 200 , message = "Region trovato")
+//				}
+//    		)    
+    //@ApiParam(value = "Id Region Univoco") 
     @GetMapping(value = "/{id}" , produces = "application/json")
     @SneakyThrows
-    public ResponseEntity<RegionsDto> getById(@ApiParam(value = "Id Region Univoco") @Valid @NotNull @PathVariable("id") String id)  {
+    public ResponseEntity<RegionsDto> getById(@Valid @NotNull @PathVariable("id") String id)  {
     	log.info("Init- RegionsController: getById");
     	
     	RegionsDto region = regionsService.getById(id);
@@ -118,19 +120,19 @@ public class RegionsController {
      *
      * @return the all regions
      */
-    @ApiOperation(
-   		 value = "Ricerca All Region",
-   		 notes = "Ritorna tutti i dati delle Region in formato JSON",
-   		 response = RegionsDto.class,
-   		 produces = "application/json"
-   		)
-   @ApiResponses(value = 
-				{
-					@ApiResponse(code = 404 , message = "Region non trovato"),
-					@ApiResponse(code = 200 , message = "Region trovato"),
-					@ApiResponse(code = 302 , message = "Region gi&agrave; presente")
-				}
-   		)
+//    @ApiOperation(
+//   		 value = "Ricerca All Region",
+//   		 notes = "Ritorna tutti i dati delle Region in formato JSON",
+//   		 response = RegionsDto.class,
+//   		 produces = "application/json"
+//   		)
+//   @ApiResponses(value = 
+//				{
+//					@ApiResponse(code = 404 , message = "Region non trovato"),
+//					@ApiResponse(code = 200 , message = "Region trovato"),
+//					@ApiResponse(code = 302 , message = "Region gi&agrave; presente")
+//				}
+//   		)
     @GetMapping(produces = "application/json")
     @SneakyThrows
     public ResponseEntity<List<RegionsDto>> getAllRegions() {

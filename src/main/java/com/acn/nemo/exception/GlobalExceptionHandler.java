@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -32,6 +33,7 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler({MethodArgumentNotValidException.class})
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException ex) {
 		List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(FieldError::getDefaultMessage)
 								.collect(Collectors.toList());
@@ -44,6 +46,7 @@ public class GlobalExceptionHandler {
 	
 	
 	@ExceptionHandler(NumberFormatException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<ErrorResponse> handleNumberFormatException(NumberFormatException ex) {
 		List<String> errors = Arrays.asList(ex.getMessage());
 		ErrorResponse errorResponse = ErrorResponse.builder()
@@ -61,6 +64,7 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(ConstraintViolationException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<ErrorResponse> handleConstraintErrors(ConstraintViolationException ex) {	
 		List<String> errors = ex.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
 		ErrorResponse errorResponse = ErrorResponse.builder()
@@ -77,6 +81,7 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(NotFoundException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	 public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex) { 
 	    List<String> errors = Collections.singletonList(ex.getMessage()); 
 	    
@@ -95,6 +100,7 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(EntityNotFoundException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	protected ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException ex) {
 		List<String> errors = Arrays.asList(ex.getMessage());
 
@@ -113,6 +119,7 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(Exception.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public final ResponseEntity<ErrorResponse> handleGeneralExceptions(Exception ex) {
 	    List<String> errors = Collections.singletonList(ex.getMessage());
 
@@ -130,6 +137,7 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(RuntimeException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public final ResponseEntity<ErrorResponse> handleRuntimeExceptions(RuntimeException ex) {
 	    List<String> errors = Collections.singletonList(ex.getMessage());
 

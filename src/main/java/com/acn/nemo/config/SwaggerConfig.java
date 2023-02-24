@@ -1,4 +1,4 @@
-package com.acn.nemo;
+package com.acn.nemo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,23 +21,21 @@ import springfox.documentation.spring.web.plugins.Docket;
 @EnableWebMvc
 @Import(BeanValidatorPluginsConfiguration.class)
 public class SwaggerConfig {
-	
-	
-	
-	/**
-	 * Api.
-	 *
-	 * @return the docket
-	 */
-	@Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                                  
-          .apis(RequestHandlerSelectors.any())
-          .paths(PathSelectors.any())
-          .build()
-          .apiInfo(metaData()
-        		  );                                           
+
+
+    /**
+     * Api.
+     *
+     * @return the docket
+     */
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build()
+                .apiInfo(metaData());
     }
 
 	/**
@@ -53,7 +51,6 @@ public class SwaggerConfig {
 				.license("GNU General Public License")
 				.licenseUrl("https://www.gnu.org/licenses/gpl-3.0.en.html")
 				.contact(new Contact("Massimo Caputo", "http://www.google.com", "massimo.caputo@accenture.com"))
-				.build()
-				;
+				.build();
 	}
 }

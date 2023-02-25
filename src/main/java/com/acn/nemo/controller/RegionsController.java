@@ -23,51 +23,42 @@ import com.acn.nemo.exception.NotFoundException;
 import com.acn.nemo.service.RegionsService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 
-/**
- * The Class RegionsController.
- */
+
 @RestController
 @RequestMapping("api/regions")
-
-/** The Constant log. */
-
-/** The Constant log. */
 @Log4j2
-//@Api(value = "hrservice" , tags = "Controller Operazioni su Region")
+@Tag(name = "hrservice" , description = "Controller Operazioni su Region")
 public class RegionsController {
 
     /** The regions service. */
     @Autowired
     private RegionsService regionsService;
 
-    /**
-     * Creates the region.
-     *
-     * @param dto the dto
-     * @return the response entity
-     */
-    @Operation(summary = "Crea Region" , description = "Ritorna i dati della Region in formato JSON",
-    		method = "HHTP", requestBody = @RegionsDto )
-//    @ApiOperation(
-//   		 value = "Crea Region",
-//   		 notes = "Ritorna i dati della Region in formato JSON",
-//   		 response = RegionsDto.class,
-//   		 produces = "application/json"
-//   		)
-//   @ApiResponses(value = 
-//				{
-//					@ApiResponse(code = 404 , message = "Region non trovato"),
-//					@ApiResponse(code = 201 , message = "Region creata")
-//				}
-//   		) 
-  //@ApiParam(value = "RegionDto")
+    
+    
+    
+    @Operation(summary = "Crea Region" , description = "Ritorna i dati della Region creat in formato JSON", method = "HHTP", tags = {"RegionsDto"} )
+    @ApiResponses(value = {
+		   			@ApiResponse(responseCode = "201" , description = "Region creata" , 
+		   					content = @Content(mediaType = "application/json", schema = @Schema(implementation = RegionsDto.class))),
+		   			@ApiResponse(responseCode = "401", description = "Utente non Autenticato", content = @Content),
+		   			@ApiResponse(responseCode = "403", description = "Utente non Autorizzato", content = @Content),
+					@ApiResponse(responseCode = "404", description = "Regions not found", 
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = DuplicateException.class))) 
+		   			}
+    			)
+	@ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/inserisci", produces = "application/json")
     @SneakyThrows
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<RegionsDto> createRegion( @Valid @RequestBody RegionsDto dto) {
     	log.info("Salviamo Region con codice " + dto.getRegionName());
     	 
@@ -87,19 +78,16 @@ public class RegionsController {
      * @param id the id
      * @return the by id
      */
-//    @ApiOperation(
-//    		 value = "Ricerca Region per Id",
-//    		 notes = "Ritorna i dati della Region in formato JSON",
-//    		 response = RegionsDto.class,
-//    		 produces = "application/json"
-//    		)
-//    @ApiResponses(value = 
-//				{
-//					@ApiResponse(code = 404 , message = "Region non trovato"),
-//					@ApiResponse(code = 200 , message = "Region trovato")
-//				}
-//    		)    
-    //@ApiParam(value = "Id Region Univoco") 
+    @Operation(summary = "Trova Region per ID" , description = "Ritorna i dati della Region per id in formato JSON", method = "HHTP", tags = {"id"} )
+    @ApiResponses(value = {
+		   			@ApiResponse(responseCode = "200" , description = "Region trovata" , 
+		   					content = @Content(mediaType = "application/json", schema = @Schema(implementation = RegionsDto.class))),
+		   			@ApiResponse(responseCode = "401", description = "Utente non Autenticato", content = @Content),
+		   			@ApiResponse(responseCode = "403", description = "Utente non Autorizzato", content = @Content),
+					@ApiResponse(responseCode = "404", description = "Regions not found", 
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = NotFoundException.class))) 
+		   			}
+    			)
     @GetMapping(value = "/{id}" , produces = "application/json")
     @SneakyThrows
     public ResponseEntity<RegionsDto> getById(@Valid @NotNull @PathVariable("id") String id)  {
@@ -120,19 +108,16 @@ public class RegionsController {
      *
      * @return the all regions
      */
-//    @ApiOperation(
-//   		 value = "Ricerca All Region",
-//   		 notes = "Ritorna tutti i dati delle Region in formato JSON",
-//   		 response = RegionsDto.class,
-//   		 produces = "application/json"
-//   		)
-//   @ApiResponses(value = 
-//				{
-//					@ApiResponse(code = 404 , message = "Region non trovato"),
-//					@ApiResponse(code = 200 , message = "Region trovato"),
-//					@ApiResponse(code = 302 , message = "Region gi&agrave; presente")
-//				}
-//   		)
+    @Operation(summary = "Trova tutte le Region" , description = "Ritorna i dati di tutte le Region", method = "HHTP" )
+    @ApiResponses(value = {
+		   			@ApiResponse(responseCode = "200" , description = "Region trovata" , 
+		   					content = @Content(mediaType = "application/json", schema = @Schema(implementation = RegionsDto.class))),
+		   			@ApiResponse(responseCode = "401", description = "Utente non Autenticato", content = @Content),
+		   			@ApiResponse(responseCode = "403", description = "Utente non Autorizzato", content = @Content),
+					@ApiResponse(responseCode = "404", description = "Regions not found", 
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = NotFoundException.class))) 
+		   			}
+    			)
     @GetMapping(produces = "application/json")
     @SneakyThrows
     public ResponseEntity<List<RegionsDto>> getAllRegions() {

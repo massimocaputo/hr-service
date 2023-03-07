@@ -14,7 +14,6 @@ public interface RegionMapper {
 	
 	RegionsDto modelToDto(Region region);
 	
-	
 	Region dtoToModel(RegionsDto regionsDto);
 
 

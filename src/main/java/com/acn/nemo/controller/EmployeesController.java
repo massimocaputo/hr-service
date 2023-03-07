@@ -2,8 +2,8 @@ package com.acn.nemo.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +22,7 @@ import com.acn.nemo.dto.EmployeesDto;
 import com.acn.nemo.service.EmployeesService;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("api/employee")
 @Validated
 public class EmployeesController {
 
@@ -31,7 +31,7 @@ public class EmployeesController {
 	@Autowired
 	private EmployeesService employeesService;
 
-	@PostMapping("/createEmp")
+	@PostMapping("/inserisci")
 	public ResponseEntity<EmployeesDto> createEmployee(@Valid @RequestBody EmployeesDto dto) {
 		logger.info("INIT EmployeesController - createEmployee");		
 		EmployeesDto employeesDto = employeesService.createEmployee(dto);
@@ -67,7 +67,7 @@ public class EmployeesController {
 		}
 	}
 
-	@GetMapping
+	@GetMapping(value = "/all" , produces = "application/json")
 	public ResponseEntity<List<EmployeesDto>> findAllEmployees() {
 		logger.info("findAllEmployees");
 		List<EmployeesDto> employeesDtoList = employeesService.getAllEmployees();

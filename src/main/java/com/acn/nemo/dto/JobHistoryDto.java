@@ -7,12 +7,44 @@ import com.acn.nemo.model.Department;
 import com.acn.nemo.model.Employee;
 import com.acn.nemo.model.Job;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * The Class JobHistoryDto.
+ */
+
+/**
+ * To string.
+ *
+ * @return the java.lang. string
+ */
+@Data
+
+/**
+ * Instantiates a new job history dto.
+ *
+ * @param endDate the end date
+ * @param startDate the start date
+ * @param department the department
+ * @param employee the employee
+ * @param job the job
+ */
+@AllArgsConstructor
 
 /**
  * Instantiates a new job history dto.
  */
-@Data
+@NoArgsConstructor
+
+/**
+ * To string.
+ *
+ * @return the java.lang. string
+ */
+@Builder
 public class JobHistoryDto implements Serializable {
 
 

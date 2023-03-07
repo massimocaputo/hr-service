@@ -5,15 +5,40 @@ import java.io.Serializable;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Instantiates a new locations dto.
+ * To string.
+ *
+ * @return the java.lang. string
  */
 @Data
+
+/**
+ * Instantiates a new locations dto.
+ */
 @NoArgsConstructor
+
+/**
+ * Instantiates a new locations dto.
+ *
+ * @param locationId the location id
+ * @param streetAddress the street address
+ * @param postalCode the postal code
+ * @param city the city
+ * @param stateProvince the state province
+ * @param departments the departments
+ */
 @AllArgsConstructor
+
+/**
+ * To string.
+ *
+ * @return the java.lang. string
+ */
+@Builder
 public class LocationsDto implements Serializable {
 	
   	/** The Constant serialVersionUID. */

@@ -1,7 +1,7 @@
 package com.acn.nemo.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 

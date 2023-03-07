@@ -36,7 +36,7 @@ import lombok.extern.log4j.Log4j2;
 @RestController
 @RequestMapping("api/regions")
 @Log4j2
-@Tag(name = "hrservice" , description = "Controller Operazioni su Region")
+@Tag(name = "RegionsController" , description = "Controller Operazioni su Region")
 public class RegionsController {
 
     /** The regions service. */
@@ -46,7 +46,7 @@ public class RegionsController {
     
     
     
-    @Operation(summary = "Crea Region" , description = "Ritorna i dati della Region creat in formato JSON", method = "HHTP", tags = {"RegionsDto"} )
+    @Operation(summary = "Crea Region" , description = "Ritorna i dati della Region creat in formato JSON", method = "HTTP")
     @ApiResponses(value = {
 		   			@ApiResponse(responseCode = "201" , description = "Region creata" , 
 		   					content = @Content(mediaType = "application/json", schema = @Schema(implementation = RegionsDto.class))),
@@ -78,7 +78,7 @@ public class RegionsController {
      * @param id the id
      * @return the by id
      */
-    @Operation(summary = "Trova Region per ID" , description = "Ritorna i dati della Region per id in formato JSON", method = "HHTP", tags = {"id"} )
+    @Operation(summary = "Trova Region per ID" , description = "Ritorna i dati della Region per id in formato JSON", method = "HHTP")
     @ApiResponses(value = {
 		   			@ApiResponse(responseCode = "200" , description = "Region trovata" , 
 		   					content = @Content(mediaType = "application/json", schema = @Schema(implementation = RegionsDto.class))),

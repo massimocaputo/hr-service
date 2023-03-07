@@ -81,7 +81,7 @@ public class GlobalExceptionHandler {
 	 * @return the response entity
 	 */
 	@ExceptionHandler(NotFoundException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
 	 public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex) { 
 	    List<String> errors = Collections.singletonList(ex.getMessage()); 
 	    

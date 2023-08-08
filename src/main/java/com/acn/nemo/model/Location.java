@@ -19,8 +19,10 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * The Class Location.
@@ -29,13 +31,30 @@ import lombok.EqualsAndHashCode;
 @Table(name = "LOCATIONS")
 
 /**
- * Instantiates a new location.
+ * To string.
+ *
+ * @return the java.lang. string
  */
+@Data
 
 /**
  * Instantiates a new location.
  */
-@Data
+@NoArgsConstructor
+
+/**
+ * Instantiates a new location.
+ *
+ * @param locationId the location id
+ * @param streetAddress the street address
+ * @param postalCode the postal code
+ * @param city the city
+ * @param stateProvince the state province
+ * @param country the country
+ * @param departments the departments
+ */
+
+@AllArgsConstructor
 public class Location implements Serializable{
 
 	

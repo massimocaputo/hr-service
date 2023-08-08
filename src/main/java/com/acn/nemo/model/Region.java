@@ -18,50 +18,17 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 
 
 /**
- * The persistent class for the regions database table.
- * 
+ * The Class Region.
  */
 @Entity
 @Table(name = "regions")
 
-/**
- * Gets the region name.
- *
- * @return the region name
- */
-
-/**
- * Gets the countries.
- *
- * @return the countries
- */
-@Getter
-
-/**
- * Sets the region name.
- *
- * @param regionName the new region name
- */
-
-/**
- * Sets the countries.
- *
- * @param countries the new countries
- */
-@Setter
-
-/**
- * Instantiates a new region.
- *
- * @param regionId the region id
- * @param regionName the region name
- */
 
 /**
  * Instantiates a new region.
@@ -75,11 +42,14 @@ import lombok.Setter;
 /**
  * Instantiates a new region.
  */
+@NoArgsConstructor
 
 /**
- * Instantiates a new region.
+ * To string.
+ *
+ * @return the java.lang. string
  */
-@NoArgsConstructor
+@Data
 @NamedQuery(name="Region.findAll", query="SELECT r FROM Region r")
 public class Region implements Serializable {
 	
@@ -99,6 +69,7 @@ public class Region implements Serializable {
 	/** The countries. */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "region")
 	@JsonManagedReference
+	@ToString.Exclude
 	private List<Country> countries = new ArrayList<>(); 
 	
 	/**

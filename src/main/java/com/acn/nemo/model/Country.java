@@ -19,7 +19,9 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 /**
@@ -28,14 +30,28 @@ import lombok.Data;
 @Entity
 @Table(name = "COUNTRIES")
 
+
+/**
+ * To string.
+ *
+ * @return the java.lang. string
+ */
+@Data
+
 /**
  * Instantiates a new country.
+ *
+ * @param countryId the country id
+ * @param countryName the country name
+ * @param region the region
+ * @param locations the locations
  */
+@AllArgsConstructor
 
 /**
  * Instantiates a new country.
  */
-@Data
+@NoArgsConstructor
 public class Country implements Serializable {
 
 	/** The Constant serialVersionUID. */

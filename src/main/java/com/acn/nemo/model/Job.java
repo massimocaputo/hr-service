@@ -1,26 +1,17 @@
 package com.acn.nemo.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * The Class Job.
@@ -29,23 +20,26 @@ import lombok.Setter;
 @Table(name="JOBS")
 
 /**
- * Gets the max salary.
+ * To string.
  *
- * @return the max salary
+ * @return the java.lang. string
  */
-@Getter
-
-/**
- * Sets the max salary.
- *
- * @param maxSalary the new max salary
- */
-@Setter
+@Data
 
 /**
  * Instantiates a new job.
  */
 @NoArgsConstructor
+
+/**
+ * Instantiates a new job.
+ *
+ * @param jobId the job id
+ * @param jobTitle the job title
+ * @param minSalary the min salary
+ * @param maxSalary the max salary
+ */
+@AllArgsConstructor
 public class Job implements Serializable{
 
 	

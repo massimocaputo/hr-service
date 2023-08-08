@@ -19,8 +19,10 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 /**
@@ -30,17 +32,32 @@ import lombok.EqualsAndHashCode;
 @Table(name="employees")
 
 /**
- * Instantiates a new employee.
- */
-
-/**
- * Instantiates a new employee.
- */
-
-/**
- * Instantiates a new employee.
+ * To string.
+ *
+ * @return the java.lang. string
  */
 @Data
+
+/**
+ * Instantiates a new employee.
+ */
+@NoArgsConstructor
+
+/**
+ * Instantiates a new employee.
+ *
+ * @param employeeId the employee id
+ * @param commissionPct the commission pct
+ * @param email the email
+ * @param firstName the first name
+ * @param hireDate the hire date
+ * @param lastName the last name
+ * @param managerId the manager id
+ * @param phoneNumber the phone number
+ * @param salary the salary
+ * @param department the department
+ */
+@AllArgsConstructor
 @NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
 public class Employee implements Serializable {
 	

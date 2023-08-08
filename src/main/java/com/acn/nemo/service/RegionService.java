@@ -11,6 +11,9 @@ public interface RegionService {
 
 	
 
+	/** The sel all region. */
+	List<Region> selAllRegion();
+
 	/**
 	 * Find all regions.
 	 *
@@ -25,6 +28,15 @@ public interface RegionService {
 	 * @return the region
 	 */
 	Region retriveRegion(Long id);
+
+	
+	/**
+	 * Gets the region name.
+	 *
+	 * @param name the name
+	 * @return the region name
+	 */
+	Region getRegionName(String name);
 
 
 

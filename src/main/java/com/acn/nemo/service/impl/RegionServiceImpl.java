@@ -48,6 +48,25 @@ public class RegionServiceImpl implements RegionService {
 	}
 
 
+
+	/**
+	 * Sel all region.
+	 *
+	 * @return the list Region
+	 */
+	@Override
+	public List<Region> selAllRegion() {
+		return regionRepository.selAllRegion();
+	}
+
+
+
+	@Override
+	public Region getRegionName(String name) {
+		return regionRepository.findByRegionNameContainingIgnoreCase(name);
+	}
+
+
 	
 
 

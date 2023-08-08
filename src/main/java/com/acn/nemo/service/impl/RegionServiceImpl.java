@@ -44,8 +44,7 @@ public class RegionServiceImpl implements RegionService {
 
 	@Override
 	public Region retriveRegion(Long id) {
-		regionRepository.findByRegionId(id)
-		return null;
+		return regionRepository.findByRegionId(id);
 	}
 
 

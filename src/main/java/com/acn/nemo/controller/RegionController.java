@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acn.nemo.model.Region;
-import com.acn.nemo.service.RegionsService;
+import com.acn.nemo.service.RegionService;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class RegionController {
 
 	  /** The regions service. */
     @Autowired
-    private RegionsService regionsService;
+    private RegionService regionService;
 	
 	@GetMapping("/hello")
 	public String getHello() {
@@ -35,27 +35,32 @@ public class RegionController {
 	@SneakyThrows
     public ResponseEntity<List<Region>> getAllRegions() {
     	log.info("Init- RegionsController: getAllRegions");
-    	List<Region> dtos = regionsService.findAllRegions();
+    	List<Region> regions = regionService.findAllRegions();
     	
-    	if( ObjectUtils.isNotEmpty(dtos)) {
-    		log.info(String.format("Region %s: ", dtos));
+    	if( ObjectUtils.isNotEmpty(regions)) {
+    		log.info(String.format("Region %s: ", regions));
     		log.info("End- RegionsController: getAllRegions");
-    		return new ResponseEntity<>(dtos, HttpStatus.FOUND);
+    		return new ResponseEntity<>(regions, HttpStatus.FOUND);
     	}else {
     		String msg = "Region non trovato";
-    		
     		log.warn(msg);
-    		return new ResponseEntity<>(dtos, HttpStatus.NOT_FOUND);
-    		//throw new NotFoundException(msg);
+    		return new ResponseEntity<>(regions, HttpStatus.NOT_FOUND);
     	}
     }
 	
 	@GetMapping("/{id}")
 	@SneakyThrows
-	public ResponseEntity<Region> retriveRegion(@PathVariable Long {id} id){
+	public ResponseEntity<Region> retriveRegion(@PathVariable Long id){
 		log.info("Init- RegionsController: retriveRegion");
-		regionsService
-		log.info("END- RegionsController: retriveRegion");
+		Region reg = regionService.retriveRegion(id);
+		if( ObjectUtils.isNotEmpty(reg)){
+			log.info("END- RegionsController: retriveRegion");
+			return new ResponseEntity<>(reg, HttpStatus.FOUND);
+		}else{
+			String msg = "Region non trovato";
+			log.info(String.format("END- RegionsController: %s " , msg));
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
 	}
 	
 }

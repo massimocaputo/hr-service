@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.acn.nemo.model.Region;
-import com.acn.nemo.repository.RegionsRepository;
-import com.acn.nemo.service.RegionsService;
+import com.acn.nemo.repository.RegionRepository;
+import com.acn.nemo.service.RegionService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -20,12 +20,12 @@ import lombok.extern.log4j.Log4j2;
 
 /** The Constant log. */
 @Log4j2
-public class RegionsServiceImpl implements RegionsService {
+public class RegionServiceImpl implements RegionService {
 	
 	
 	/** The regions repository. */
 	@Autowired
-	private RegionsRepository regionsRepository;
+	private RegionRepository regionRepository;
 	
 
 
@@ -37,7 +37,15 @@ public class RegionsServiceImpl implements RegionsService {
 	@Override
 	public List<Region> findAllRegions() {
 		log.info("Init- RegionsServiceImpl: findAllRegions");
-		return regionsRepository.findAll();
+		return regionRepository.findAll();
+	}
+
+
+
+	@Override
+	public Region retriveRegion(Long id) {
+		regionRepository.findByRegionId(id)
+		return null;
 	}
 
 

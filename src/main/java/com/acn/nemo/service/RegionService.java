@@ -7,7 +7,7 @@ import com.acn.nemo.model.Region;
 /**
  * The Interface RegionsService.
  */
-public interface RegionsService {
+public interface RegionService {
 
 	
 
@@ -17,6 +17,14 @@ public interface RegionsService {
 	 * @return the list
 	 */
 	List<Region> findAllRegions();
+
+	/**
+	 * Retrive region.
+	 *
+	 * @param id the id
+	 * @return the region
+	 */
+	Region retriveRegion(Long id);
 
 
 

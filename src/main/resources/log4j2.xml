@@ -17,7 +17,7 @@
 			<PatternLayout pattern="${LOG_PATTERN}" />
 			<Policies>
 				<OnStartupTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="100 MB" />
+				<SizeBasedTriggeringPolicy size="900 MB" />
 				<TimeBasedTriggeringPolicy />
 			</Policies>
 			<DefaultRolloverStrategy>

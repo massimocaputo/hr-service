@@ -16,9 +16,9 @@
 			ignoreExceptions="false">
 			<PatternLayout pattern="${LOG_PATTERN}" />
 			<Policies>
-				<OnStartupTriggeringPolicy />
+				<!-- OnStartupTriggeringPolicy /-->
 				<SizeBasedTriggeringPolicy size="900 MB" />
-				<TimeBasedTriggeringPolicy />
+				<!-- TimeBasedTriggeringPolicy /-->
 			</Policies>
 			<DefaultRolloverStrategy>
 				<Delete basePath="${baseDir}" maxDepth="2">

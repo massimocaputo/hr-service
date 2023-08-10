@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -18,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.StandardException;
 
 /**
  * The Class Department.
@@ -53,7 +55,9 @@ public class Department implements Serializable{
 	
 	/** The department id. */
 	@Id
-	@GeneratedValue(strategy =GenerationType.AUTO )
+	@GeneratedValue(strategy =GenerationType.SEQUENCE, generator = "DEPT_SEQ" )
+	@SequenceGenerator(sequenceName = "DEPARTMENTS_SEQ", name = "DEPT_SEQ",
+						initialValue = 10,allocationSize = 10)
 	@Column(name = "DEPARTMENT_ID", nullable = false, unique = true )
 	private Long departmentId;
 	

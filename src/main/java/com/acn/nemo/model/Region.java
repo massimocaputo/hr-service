@@ -69,7 +69,7 @@ public class Region implements Serializable {
 	/** The countries. */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "region")
 	@JsonManagedReference
-	@ToString.Exclude
+	//@ToString.Exclude
 	private List<Country> countries = new ArrayList<>(); 
 	
 	/**

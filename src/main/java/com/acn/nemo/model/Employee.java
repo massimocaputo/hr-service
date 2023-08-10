@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -67,7 +68,9 @@ public class Employee implements Serializable {
 
 	/** The employee id. */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "EMP_SEQ")
+	@SequenceGenerator(name = "EMP_SEQ", sequenceName = "EMPLOYEES_SEQ",
+						initialValue = 1, allocationSize = 1 )
 	@Column(name="employee_id", unique=true, nullable=false)
 	private Long employeeId;
 

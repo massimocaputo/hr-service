@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.acn.nemo.dtos.RegionDto;
 import com.acn.nemo.model.Region;
 import com.acn.nemo.service.RegionService;
 
@@ -39,18 +40,18 @@ public class RegionController {
 	 */
 	@GetMapping(value = "/all", produces = "application/json")
 	@SneakyThrows
-    public ResponseEntity<List<Region>> getAllRegions() {
+    public ResponseEntity<List<RegionDto>> getAllRegions() {
     	log.info("Init- RegionsController: getAllRegions");
-    	List<Region> regions = regionService.findAllRegions();
+    	List<RegionDto> regionsDtos = regionService.findAllRegions();
     	
-    	if( ObjectUtils.isNotEmpty(regions)) {
-    		log.info(String.format("Region %s: ", regions));
+    	if( ObjectUtils.isNotEmpty(regionsDtos)) {
+    		log.info(String.format("Region %s: ", regionsDtos));
     		log.info("End- RegionsController: getAllRegions");
-    		return new ResponseEntity<>(regions, HttpStatus.FOUND);
+    		return new ResponseEntity<>(regionsDtos, HttpStatus.FOUND);
     	}else {
     		String msg = "Region non trovato";
     		log.warn(msg);
-    		return new ResponseEntity<>(regions, HttpStatus.NOT_FOUND);
+    		return new ResponseEntity<>(regionsDtos, HttpStatus.NOT_FOUND);
     	}
     }
 	

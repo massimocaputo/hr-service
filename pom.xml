@@ -125,6 +125,18 @@
 							<version>${lombok.version}</version>
 						</path>
 					</annotationProcessorPaths>
+						<showWarnings>true</showWarnings>
+						<compilerArgs>
+				            <arg>
+				                -Amapstruct.suppressGeneratorTimestamp=true
+				            </arg>
+				            <arg>
+				                -Amapstruct.suppressGeneratorVersionInfoComment=true
+				            </arg>
+				            <arg>
+				                -Amapstruct.verbose=true
+				            </arg>
+				        </compilerArgs>
 				</configuration>
 			</plugin>
 		</plugins>

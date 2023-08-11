@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.acn.nemo.dtos.RegionDto;
 import com.acn.nemo.mapper.RegionMapper;
-import com.acn.nemo.model.Region;
 import com.acn.nemo.repository.RegionRepository;
 import com.acn.nemo.service.RegionService;
 
@@ -59,8 +58,8 @@ public class RegionServiceImpl implements RegionService {
 	 * @return the region
 	 */
 	@Override
-	public Region retriveRegion(Long id) {
-		return regionRepository.findByRegionId(id);
+	public RegionDto retriveRegion(Long id) {
+		return regionMapper.regionToRegionDto( regionRepository.findByRegionId(id) );
 	}
 
 
@@ -71,8 +70,8 @@ public class RegionServiceImpl implements RegionService {
 	 * @return the list
 	 */
 	@Override
-	public List<Region> selAllRegion() {
-		return regionRepository.selAllRegion();
+	public List<RegionDto> selAllRegion() {
+		return regionMapper.regionListToRegionDtos(regionRepository.selAllRegion());
 	}
 
 
@@ -84,8 +83,9 @@ public class RegionServiceImpl implements RegionService {
 	 * @return the region name
 	 */
 	@Override
-	public Region getRegionName(String name) {
-		return regionRepository.findByRegionNameContainingIgnoreCase(name);
+	public RegionDto getRegionName(String name) {
+		log.info(String.format("INIT - getRegionName: %s", name));
+		return regionMapper.regionToRegionDto(regionRepository.findByRegionNameContainingIgnoreCase(name) );
 	}
 
 

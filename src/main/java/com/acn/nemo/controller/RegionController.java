@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acn.nemo.dtos.RegionDto;
-import com.acn.nemo.model.Region;
 import com.acn.nemo.service.RegionService;
 
 import lombok.SneakyThrows;
@@ -55,6 +54,24 @@ public class RegionController {
     	}
     }
 	
+	@GetMapping(value = "/sel", produces = "application/json")
+	@SneakyThrows
+    public ResponseEntity<List<RegionDto>> selAllRegions() {
+    	log.info("Init- RegionsController: getAllRegions");
+    	List<RegionDto> regionsDtos = regionService.selAllRegion();
+    	
+    	if( ObjectUtils.isNotEmpty(regionsDtos)) {
+    		log.info(String.format("Region %s: ", regionsDtos));
+    		log.info("End- RegionsController: getAllRegions");
+    		return new ResponseEntity<>(regionsDtos, HttpStatus.FOUND);
+    	}else {
+    		String msg = "Region non trovato";
+    		log.warn(msg);
+    		return new ResponseEntity<>(regionsDtos, HttpStatus.NOT_FOUND);
+    	}
+    }
+	
+	
 	/**
 	 * Retrive region.
 	 *
@@ -63,9 +80,9 @@ public class RegionController {
 	 */
 	@GetMapping("/{id}")
 	@SneakyThrows
-	public ResponseEntity<Region> retriveRegion(@PathVariable Long id){
+	public ResponseEntity<RegionDto> retriveRegion(@PathVariable Long id){
 		log.info("Init- RegionsController: retriveRegion");
-		Region reg = regionService.retriveRegion(id);
+		RegionDto reg = regionService.retriveRegion(id);
 		if( ObjectUtils.isNotEmpty(reg)){
 			log.info("END- RegionsController: retriveRegion");
 			return new ResponseEntity<>(reg, HttpStatus.FOUND);
@@ -86,9 +103,9 @@ public class RegionController {
 	 */
 	@GetMapping(path="/name/{name}")
 	@SneakyThrows
-	public ResponseEntity<Region> regionName(@PathVariable String name){
+	public ResponseEntity<RegionDto> regionName(@PathVariable String name){
 		log.info("Init- RegionsController: regionName");
-    	Region region = regionService.getRegionName(name);
+		RegionDto region = regionService.getRegionName(name);
     	
     	if( ObjectUtils.isNotEmpty(region)) {
     		log.info(String.format("Region %s: ", region));

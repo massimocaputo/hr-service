@@ -1,7 +1,5 @@
 package com.acn.nemo.dtos;
 
-import com.acn.nemo.model.Location;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -16,6 +16,7 @@ import com.acn.nemo.service.RegionService;
 
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Class RegionController.
@@ -24,7 +25,7 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("v1/regions")
 
 /** The Constant log. */
-@Log4j2
+@Slf4j
 public class RegionController {
 
 	  /** The regions service. */
@@ -80,9 +81,10 @@ public class RegionController {
 	 */
 	@GetMapping("/{id}")
 	@SneakyThrows
-	public ResponseEntity<RegionDto> retriveRegion(@PathVariable Long id){
+	public ResponseEntity<RegionDto> retriveRegion(@PathVariable("id") Long id){
 		log.info("Init- RegionsController: retriveRegion");
 		RegionDto reg = regionService.retriveRegion(id);
+		log.info("RegionDto: "+ reg.toString());
 		if( ObjectUtils.isNotEmpty(reg)){
 			log.info("END- RegionsController: retriveRegion");
 			return new ResponseEntity<>(reg, HttpStatus.FOUND);

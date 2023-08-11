@@ -12,6 +12,7 @@ import com.acn.nemo.repository.RegionRepository;
 import com.acn.nemo.service.RegionService;
 
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Class RegionServiceImpl.
@@ -24,7 +25,7 @@ import lombok.extern.log4j.Log4j2;
 /** The Constant log. */
 
 /** The Constant log. */
-@Log4j2
+@Slf4j
 public class RegionServiceImpl implements RegionService {
 	
 	
@@ -59,6 +60,7 @@ public class RegionServiceImpl implements RegionService {
 	 */
 	@Override
 	public RegionDto retriveRegion(Long id) {
+		log.info(String.format("INIT - retriveRegion: %s", id));
 		return regionMapper.regionToRegionDto( regionRepository.findByRegionId(id) );
 	}
 
@@ -71,6 +73,7 @@ public class RegionServiceImpl implements RegionService {
 	 */
 	@Override
 	public List<RegionDto> selAllRegion() {
+		log.info("INIT - selAllRegion");
 		return regionMapper.regionListToRegionDtos(regionRepository.selAllRegion());
 	}
 

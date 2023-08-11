@@ -1,36 +1,14 @@
 package com.acn.nemo.dtos;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 /**
- * Gets the department name.
+ * To string.
  *
- * @return the department name
+ * @return the java.lang. string
  */
-@Getter
-
-/**
- * Sets the department name.
- *
- * @param departmentName the new department name
- */
-@Setter
-
-/**
- * Instantiates a new department dto.
- */
-@NoArgsConstructor
-
-/**
- * Instantiates a new department dto.
- *
- * @param departmentName the department name
- */
-@AllArgsConstructor
+@Data
 
 /**
  * To string.

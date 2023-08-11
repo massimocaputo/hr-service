@@ -2,42 +2,15 @@ package com.acn.nemo.dtos;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 /**
- * Gets the department dtos.
+ * To string.
  *
- * @return the department dtos
+ * @return the java.lang. string
  */
-@Getter
-
-/**
- * Sets the department dtos.
- *
- * @param departmentDtos the new department dtos
- */
-@Setter
-
-/**
- * Instantiates a new location dto.
- */
-@NoArgsConstructor
-
-/**
- * Instantiates a new location dto.
- *
- * @param locationId the location id
- * @param streetAddress the street address
- * @param postalCode the postal code
- * @param city the city
- * @param stateProvince the state province
- * @param departmentDtos the department dtos
- */
-@AllArgsConstructor
+@Data
 
 /**
  * To string.

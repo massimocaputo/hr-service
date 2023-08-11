@@ -2,39 +2,15 @@ package com.acn.nemo.dtos;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 /**
- * Gets the location dtos.
+ * To string.
  *
- * @return the location dtos
+ * @return the java.lang. string
  */
-@Getter
-
-/**
- * Sets the location dtos.
- *
- * @param locationDtos the new location dtos
- */
-@Setter
-
-/**
- * Instantiates a new country dto.
- */
-@NoArgsConstructor
-
-/**
- * Instantiates a new country dto.
- *
- * @param countryId the country id
- * @param countryName the country name
- * @param locationDtos the location dtos
- */
-@AllArgsConstructor
+@Data
 
 /**
  * To string.

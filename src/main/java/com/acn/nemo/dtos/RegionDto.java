@@ -1,40 +1,17 @@
 package com.acn.nemo.dtos;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
+
 
 /**
- * Gets the countries.
+ * To string.
  *
- * @return the countries
+ * @return the java.lang. string
  */
-@Getter
-
-/**
- * Sets the countries.
- *
- * @param countries the new countries
- */
-@Setter
-
-/**
- * Instantiates a new region dto.
- */
-@NoArgsConstructor
-
-/**
- * Instantiates a new region dto.
- *
- * @param regionName the region name
- * @param countries the countries
- */
-@AllArgsConstructor
+@Data
 
 /**
  * To string.
@@ -45,6 +22,7 @@ import lombok.Setter;
 public class RegionDto {
 	
 	
+	/** The id. */
 	private String id;
 	
 	/** The region name. */

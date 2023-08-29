@@ -11,7 +11,6 @@ import com.acn.nemo.mapper.RegionMapper;
 import com.acn.nemo.repository.RegionRepository;
 import com.acn.nemo.service.RegionService;
 
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 
 /**

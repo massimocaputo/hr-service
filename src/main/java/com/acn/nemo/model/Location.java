@@ -96,7 +96,7 @@ public class Location implements Serializable{
 	//bi-directional many-to-one association to Department
 	@OneToMany(mappedBy="location", fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
-	private List<Department> departments = new ArrayList<>();
+	private List<Department> departments ;
 	
 	/**
 	 * Adds the department.

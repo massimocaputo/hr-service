@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 
 /**
@@ -70,7 +69,7 @@ public class Region implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "region")
 	@JsonManagedReference
 	//@ToString.Exclude
-	private List<Country> countries = new ArrayList<>(); 
+	private List<Country> countries; 
 	
 	/**
 	 * Adds the country.

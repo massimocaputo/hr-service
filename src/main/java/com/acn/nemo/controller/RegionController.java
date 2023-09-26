@@ -2,6 +2,7 @@ package com.acn.nemo.controller;
 
 import java.util.List;
 
+import com.acn.nemo.config.RegionConfig;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acn.nemo.dtos.RegionDto;
+import com.acn.nemo.dto.RegionDto;
 import com.acn.nemo.service.RegionService;
 
 import lombok.SneakyThrows;
@@ -30,7 +31,10 @@ public class RegionController {
 	  /** The regions service. */
     @Autowired
     private RegionService regionService;
-		
+	@Autowired
+    private RegionConfig regionConfig;
+
+
     
 	/**
 	 * Gets the all regions.
@@ -41,6 +45,7 @@ public class RegionController {
 	@SneakyThrows
     public ResponseEntity<List<RegionDto>> getAllRegions() {
     	log.info("Init- RegionsController: getAllRegions");
+    	log.info("List<RegionDto>: "+ regionConfig.getRegionDtos());
     	List<RegionDto> regionsDtos = regionService.findAllRegions();
     	
     	if( ObjectUtils.isNotEmpty(regionsDtos)) {

@@ -1,4 +1,4 @@
-package com.acn.nemo.dtos;
+package com.acn.nemo.dto;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class LocationDto {
 	/** The state province. */
 	private String stateProvince;
 	
-	/** The department dtos. */
+	/** The department dto. */
 	private List<DepartmentDto> departmentDtos;
 
 }

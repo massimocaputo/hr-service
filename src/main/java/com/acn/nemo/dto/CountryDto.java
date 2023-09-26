@@ -1,4 +1,4 @@
-package com.acn.nemo.dtos;
+package com.acn.nemo.dto;
 
 import java.util.List;
 
@@ -26,6 +26,6 @@ public class CountryDto {
 	/** The country name. */
 	private String countryName;
 	
-	/** The location dtos. */
+	/** The location dto. */
 	private List<LocationDto> locations;
 }

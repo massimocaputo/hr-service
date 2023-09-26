@@ -2,7 +2,7 @@ package com.acn.nemo.mapper;
 
 import org.mapstruct.Mapper;
 
-import com.acn.nemo.dtos.DepartmentDto;
+import com.acn.nemo.dto.DepartmentDto;
 import com.acn.nemo.model.Department;
 
 /**

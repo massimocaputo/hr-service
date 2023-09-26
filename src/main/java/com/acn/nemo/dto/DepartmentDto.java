@@ -1,4 +1,4 @@
-package com.acn.nemo.dtos;
+package com.acn.nemo.dto;
 
 import lombok.Builder;
 import lombok.Data;

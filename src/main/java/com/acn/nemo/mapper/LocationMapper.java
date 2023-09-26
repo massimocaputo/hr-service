@@ -6,7 +6,7 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.acn.nemo.dtos.LocationDto;
+import com.acn.nemo.dto.LocationDto;
 import com.acn.nemo.model.Location;
 
 /**
@@ -36,7 +36,7 @@ public interface LocationMapper {
 	Location locationDtoToLocation (LocationDto locationDto);
 	
 	/**
-	 * Locations to location dtos.
+	 * Locations to location dto.
 	 *
 	 * @param locations the locations
 	 * @return the list

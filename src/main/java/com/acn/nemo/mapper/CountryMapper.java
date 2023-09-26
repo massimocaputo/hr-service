@@ -1,10 +1,13 @@
 package com.acn.nemo.mapper;
 
+
 import org.mapstruct.Mapper;
 
-import com.acn.nemo.dtos.CountryDto;
+import com.acn.nemo.dto.CountryDto;
 import com.acn.nemo.model.Country;
 import org.mapstruct.Mapping;
+
+import java.util.List;
 
 /**
  * The Interface CountryMapper.
@@ -29,4 +32,7 @@ public interface CountryMapper {
 	 */
 	@Mapping(target = "region", ignore = true)
 	Country countryDtoToCountry (CountryDto countryDto );
+
+
+	List<CountryDto> countryListToCountryDtos (List<Country> country );
 }

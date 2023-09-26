@@ -1,4 +1,4 @@
-package com.acn.nemo.dtos;
+package com.acn.nemo.dto;
 
 import java.util.List;
 

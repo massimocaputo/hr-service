@@ -6,7 +6,7 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.acn.nemo.dtos.RegionDto;
+import com.acn.nemo.dto.RegionDto;
 import com.acn.nemo.model.Region;
 
 @Mapper( uses=CountryMapper.class)
@@ -21,4 +21,6 @@ public interface RegionMapper {
 	Region regionDtoToRegion (RegionDto regionDto);
 	
 	List<RegionDto> regionListToRegionDtos (List<Region> regions );
+
+	//List<RegionBeanDto> regionListToRegionBeanDto (List<Region> regions );
 }

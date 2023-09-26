@@ -17,9 +17,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 /**
@@ -48,7 +46,8 @@ import lombok.NoArgsConstructor;
  *
  * @return the java.lang. string
  */
-@Data
+@Getter
+@Setter
 @NamedQuery(name="Region.findAll", query="SELECT r FROM Region r")
 public class Region implements Serializable {
 	
@@ -66,7 +65,7 @@ public class Region implements Serializable {
 	private String regionName;
 
 	/** The countries. */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "region")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY ,orphanRemoval = true, mappedBy = "region")
 	@JsonManagedReference
 	//@ToString.Exclude
 	private List<Country> countries; 

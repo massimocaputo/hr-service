@@ -2,7 +2,7 @@ package com.acn.nemo.service;
 
 import java.util.List;
 
-import com.acn.nemo.dtos.RegionDto;
+import com.acn.nemo.dto.RegionDto;
 
 /**
  * The Interface RegionService.

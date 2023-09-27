@@ -1,6 +1,7 @@
 package com.acn.nemo.config;
 
 import com.acn.nemo.dto.RegionDto;
+import com.acn.nemo.dto.RegionInitDto;
 import com.acn.nemo.mapper.RegionMapper;
 import com.acn.nemo.service.RegionService;
 import lombok.Getter;
@@ -23,15 +24,15 @@ public class RegionConfig {
     @Autowired
     private RegionService regionService;
 
-    private List<RegionDto> regionDtos;
+    private List<RegionInitDto> regionInitDtoList;
 
     @Bean
-    public List<RegionDto> retriveRegionBeanDto(){
+    public List<RegionInitDto> retriveRegionBeanDto(){
         log.info("Init- RegionConfig");
 
-        regionDtos = regionService.findAllRegions();
-        log.info("List<RegionDto>: "+ regionDtos);
+        regionInitDtoList = regionService.findAllRegionInitDto();
+        log.info("List<RegionInitDto>: "+ regionInitDtoList);
 
-        return regionDtos;
+        return regionInitDtoList;
     }
 }

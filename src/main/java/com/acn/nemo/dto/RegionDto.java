@@ -23,7 +23,7 @@ public class RegionDto {
 	
 	
 	/** The id. */
-	private String id;
+	private String regionId;
 	
 	/** The region name. */
 	private String regionName;

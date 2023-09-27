@@ -45,7 +45,7 @@ public class RegionController {
 	@SneakyThrows
     public ResponseEntity<List<RegionDto>> getAllRegions() {
     	log.info("Init- RegionsController: getAllRegions");
-    	log.info("List<RegionDto>: "+ regionConfig.getRegionDtos());
+    	log.info("List<RegionDto>: "+ regionConfig.getRegionInitDtoList());
     	List<RegionDto> regionsDtos = regionService.findAllRegions();
     	
     	if( ObjectUtils.isNotEmpty(regionsDtos)) {

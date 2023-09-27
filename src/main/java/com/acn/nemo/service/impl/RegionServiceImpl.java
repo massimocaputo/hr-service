@@ -2,6 +2,7 @@ package com.acn.nemo.service.impl;
 
 import java.util.List;
 
+import com.acn.nemo.dto.RegionInitDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,11 +45,28 @@ public class RegionServiceImpl implements RegionService {
 	 * @return the list
 	 */
 	@Override
+	public List<RegionInitDto> findAllRegionInitDto() {
+		log.info("Init- RegionsServiceImpl: findAllRegionInitDto");
+		return regionMapper.regionListToRegionInitDto(regionRepository.selAllRegion());
+	}
+
+	/**
+	 * @return
+	 */
+	@Override
 	public List<RegionDto> findAllRegions() {
 		log.info("Init- RegionsServiceImpl: findAllRegions");
 		return regionMapper.regionListToRegionDtos(regionRepository.findAll());
 	}
 
+	/**
+	 * @return
+	 */
+	@Override
+	public List<RegionDto> findRegions() {
+		log.info("Init- RegionsServiceImpl: findRegions");
+		return regionMapper.regionListToRegionDtos(regionRepository.selAllRegion());
+	}
 
 
 	/**

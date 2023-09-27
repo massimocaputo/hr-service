@@ -32,7 +32,7 @@ public class CountryController {
     @SneakyThrows
     public ResponseEntity<List<CountryDto>> getAllCountries(){
         log.info("Init- CountryController: getAllCountries");
-        log.info("List<RegionDto>: "+ regionConfig.getRegionDtos());
+        log.info("List<RegionDto>: "+ regionConfig.getRegionInitDtoList());
 
         List<CountryDto> countryDtos = countryService.getListCountryDto();
         log.info("List<CountryDto>: "+ countryDtos);

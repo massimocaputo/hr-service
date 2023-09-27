@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 public interface RegionRepository extends JpaRepository<Region, Long> {
 
 	
-	@Query(value = "SELECT REGION_ID, REGION_NAME FROM Regions r", nativeQuery = true)
+	@Query(value = "SELECT REGION_ID, REGION_NAME FROM REGIONS", nativeQuery = true)
 	@Transactional(readOnly = true)
 	List<Region> selAllRegion();
 	
 	Region findByRegionId(Long idRegion);
-	
+
 	Region findByRegionNameContainingIgnoreCase(String name);
 
 }

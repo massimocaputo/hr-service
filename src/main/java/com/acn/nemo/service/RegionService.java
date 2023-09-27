@@ -3,6 +3,7 @@ package com.acn.nemo.service;
 import java.util.List;
 
 import com.acn.nemo.dto.RegionDto;
+import com.acn.nemo.dto.RegionInitDto;
 
 /**
  * The Interface RegionService.
@@ -23,7 +24,11 @@ public interface RegionService {
 	 *
 	 * @return the list
 	 */
+	List<RegionInitDto> findAllRegionInitDto();
+
 	List<RegionDto> findAllRegions();
+
+	List<RegionDto> findRegions();
 
 	/**
 	 * Retrive region.
